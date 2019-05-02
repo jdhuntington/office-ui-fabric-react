@@ -5,6 +5,7 @@ import { Stack } from 'office-ui-fabric-react/lib/Stack';
 import { mergeStyles } from '@uifabric/merge-styles';
 import { SemanticSlotsDetailsList } from './SemanticSlotsDetailsList';
 import { getVariant, VariantThemeType } from '@uifabric/variants';
+import { MainPanelContentWrapper, MainPanelInnerContent } from '../shared/MainPanelStyles';
 
 export interface ISemanticSlotsProps {
   theme?: ITheme;
@@ -154,15 +155,17 @@ export const SemanticSlots: React.StatelessComponent<ISemanticSlotsProps> = (pro
   strongSlots = fillVariantSlotsList(VariantThemeType.Strong);
 
   return (
-    <div style={{ width: '1200px', marginLeft: '200px' }}>
-      <h1>Semantic Slots</h1>
-      <SemanticSlotsDetailsList
-        slotNames={slotNames}
-        noneSlots={noneSlots}
-        neutralSlots={neutralSlots}
-        softSlots={softSlots}
-        strongSlots={strongSlots}
-      />
+    <div className={MainPanelContentWrapper}>
+      <div className={MainPanelInnerContent}>
+        <h1>Semantic Slots</h1>
+        <SemanticSlotsDetailsList
+          slotNames={slotNames}
+          noneSlots={noneSlots}
+          neutralSlots={neutralSlots}
+          softSlots={softSlots}
+          strongSlots={strongSlots}
+        />
+      </div>
     </div>
   );
 };

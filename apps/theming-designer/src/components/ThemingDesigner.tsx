@@ -38,6 +38,16 @@ const sidebarStyles = mergeStyles({
   width: '300px'
 });
 
+const sidebarContentStyles = mergeStyles({
+  borderRight: '1px solid #ddd',
+  minHeight: '100%',
+  paddingRight: '1rem',
+  position: 'fixed',
+  top: '60px',
+  left: '10px',
+  width: '300px'
+});
+
 const mainBlockStyles = mergeStyles({
   minWidth: MainPanelWidth
 });
@@ -70,7 +80,7 @@ export class ThemingDesigner extends BaseComponent<{}, IThemingDesignerState> {
         <Header themeRules={this.state.themeRules} />
         <Stack horizontal gap={10}>
           <Stack.Item shrink={false} grow={false} className={sidebarStyles}>
-            <Stack gap={20}>
+            <Stack gap={20} className={sidebarContentStyles}>
               <h1>
                 <IconButton
                   disabled={false}

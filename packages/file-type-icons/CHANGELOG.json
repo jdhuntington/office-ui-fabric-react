@@ -2,6 +2,25 @@
   "name": "@uifabric/file-type-icons",
   "entries": [
     {
+      "version": "6.5.2",
+      "tag": "@uifabric/file-type-icons_v6.5.2",
+      "date": "Wed, 12 Jun 2019 19:31:39 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Package bump to resolve conflicts.",
+            "author": "JD Huntington <jdh@microsoft.com>",
+            "commit": "3d7f61fea8cea00fad8d1ea19f9c090b28b864cb"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@uifabric/styling\" from `^6.49.0` to `^6.49.1`"
+          }
+        ]
+      }
+    },
+    {
       "version": "6.5.1",
       "tag": "@uifabric/file-type-icons_v6.5.1",
       "date": "Tue, 11 Jun 2019 12:21:35 GMT",

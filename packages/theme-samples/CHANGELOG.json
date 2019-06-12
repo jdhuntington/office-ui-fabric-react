@@ -2,6 +2,28 @@
   "name": "@uifabric/theme-samples",
   "entries": [
     {
+      "version": "0.1.8",
+      "tag": "@uifabric/theme-samples_v0.1.8",
+      "date": "Wed, 12 Jun 2019 19:31:39 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Package bump to resolve conflicts.",
+            "author": "JD Huntington <jdh@microsoft.com>",
+            "commit": "3d7f61fea8cea00fad8d1ea19f9c090b28b864cb"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@uifabric/variants\" from `^6.14.3` to `^6.14.4`"
+          },
+          {
+            "comment": "Updating dependency \"office-ui-fabric-react\" from `^6.189.4` to `^6.189.5`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.6",
       "tag": "@uifabric/theme-samples_v0.1.6",
       "date": "Tue, 14 May 2019 07:50:30 GMT",

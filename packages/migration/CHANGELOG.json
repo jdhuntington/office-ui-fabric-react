@@ -2,6 +2,20 @@
   "name": "@uifabric/migration",
   "entries": [
     {
+      "version": "0.3.1",
+      "tag": "@uifabric/migration_v0.3.1",
+      "date": "Wed, 12 Jun 2019 19:31:39 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Package bump to resolve conflicts.",
+            "author": "JD Huntington <jdh@microsoft.com>",
+            "commit": "3d7f61fea8cea00fad8d1ea19f9c090b28b864cb"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.2",
       "tag": "@uifabric/migration_v0.2.2",
       "date": "Tue, 14 May 2019 07:50:30 GMT",

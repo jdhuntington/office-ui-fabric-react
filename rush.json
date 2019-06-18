@@ -450,6 +450,11 @@
       "versionPolicyName": "lockedMajor"
     },
     {
+      "packageName": "@uifabric/react-sidebar",
+      "projectFolder": "packages/react-sidebar",
+      "versionPolicyName": "lockedMajor"
+    },
+    {
       "packageName": "@uifabric/codepen-loader",
       "projectFolder": "packages/codepen-loader",
       "shouldPublish": true

@@ -8,9 +8,9 @@ task(
   'copy',
   copyTask(
     [
-      '../office-ui-fabric-react/src/utilities/exampleData.ts',
-      '../office-ui-fabric-react/src/components/ExtendedPicker/examples/PeopleExampleData.ts',
-      '../office-ui-fabric-react/src/common/TestImages.ts'
+      '../core/src/utilities/exampleData.ts',
+      '../core/src/components/ExtendedPicker/examples/PeopleExampleData.ts',
+      '../core/src/common/TestImages.ts'
     ],
     'lib'
   )

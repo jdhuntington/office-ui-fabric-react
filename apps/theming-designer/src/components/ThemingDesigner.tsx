@@ -123,9 +123,17 @@ export class ThemingDesigner extends BaseComponent<{}, IThemingDesignerState> {
   }
 
   private _onFabricPaletteColorChange = (newColor: IColor | undefined, fabricSlot: FabricSlots) => {
-    // change fabric slot rule
-    console.log('changing');
-    this.state.themeRules![FabricSlots[fabricSlot]].color = newColor;
+    console.log({ newColor, fabricSlot });
+    if (!this.state.themeRules) {
+      return;
+    }
+    this.setState({
+      ...this.state,
+      themeRules: {
+        ...this.state.themeRules,
+        [FabricSlots[fabricSlot]]: { ...this.state.themeRules[FabricSlots[fabricSlot]], color: newColor }
+      }
+    });
   };
 
   private _onPrimaryColorPickerChange = (newColor: IColor | undefined) => {

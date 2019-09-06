@@ -11,6 +11,8 @@ import { ButtonStylesExample } from './examples/Button.Styles.Example';
 import { ButtonToggleExample } from './examples/Button.Toggle.Example';
 import { ButtonTokensExample } from './examples/Button.Tokens.Example';
 import { ButtonVariantsExample } from './examples/Button.Variants.Example';
+import { ButtonUnstyledExample } from './examples/Button.Unstyled.Example';
+import { ButtonMsftExample } from './examples/Button.Msft.Example';
 
 const ButtonExampleCode = require('!raw-loader!@uifabric/experiments/src/components/Button/examples/Button.Example.tsx') as string;
 const MenuButtonExampleCode = require('!raw-loader!@uifabric/experiments/src/components/Button/MenuButton/examples/MenuButton.Example.tsx') as string;
@@ -21,6 +23,8 @@ const ButtonStylesExampleCode = require('!raw-loader!@uifabric/experiments/src/c
 const ButtonToggleExampleCode = require('!raw-loader!@uifabric/experiments/src/components/Button/examples/Button.Toggle.Example.tsx') as string;
 const ButtonTokensExampleCode = require('!raw-loader!@uifabric/experiments/src/components/Button/examples/Button.Tokens.Example.tsx') as string;
 const ButtonVariantsExampleCode = require('!raw-loader!@uifabric/experiments/src/components/Button/examples/Button.Variants.Example.tsx') as string;
+const ButtonUnstyledExampleCode = require('!raw-loader!@uifabric/experiments/src/components/Button/examples/Button.Unstyled.Example.tsx') as string;
+const ButtonMsftExampleCode = require('!raw-loader!@uifabric/experiments/src/components/Button/examples/Button.Msft.Example.tsx') as string;
 
 export class ButtonPage extends React.Component<IComponentDemoPageProps, {}> {
   public render(): JSX.Element {
@@ -30,6 +34,12 @@ export class ButtonPage extends React.Component<IComponentDemoPageProps, {}> {
         componentName=" Button"
         exampleCards={
           <div>
+            <ExampleCard title="Unstyled Button" code={ButtonUnstyledExampleCode}>
+              <ButtonUnstyledExample />
+            </ExampleCard>
+            <ExampleCard title="Msft Button" code={ButtonMsftExampleCode}>
+              <ButtonMsftExample />
+            </ExampleCard>
             <ExampleCard title="Button Ramps" code={ButtonExampleCode}>
               <ButtonExample />
             </ExampleCard>

@@ -1,10 +1,9 @@
-// Temporary import file to experiment with next version of foundation.
-import { composed } from '@uifabric/foundation/lib/next/composed';
 import { useButtonState as state } from './Button.state';
 import { IButtonProps } from './Button.types';
 import { ButtonSlots as slots, ButtonView as view } from './Button.view';
+import { pseudoComposed } from '../../utilities/PseudoCompose';
 
-export const BaseButton: React.StatelessComponent<IButtonProps> = composed({
+export const BaseButton: React.StatelessComponent<IButtonProps> = pseudoComposed({
   displayName: 'BaseButton',
   slots,
   state,

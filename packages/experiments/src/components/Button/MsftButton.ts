@@ -1,13 +1,147 @@
-// Temporary import file to experiment with next version of foundation.
-import { composed } from '@uifabric/foundation/lib/next/composed';
-import { ButtonStyles as styles, ButtonTokens as tokens } from './Button.styles';
-import { IButtonProps } from './Button.types';
-import { BaseButton } from './BaseButton';
+import { FontWeights, ITheme } from '@uifabric/styling';
+import * as React from 'react';
 
-export const MsftButton: React.StatelessComponent<IButtonProps> = composed(BaseButton, {
-  displayName: 'MsftButton',
-  styles,
-  tokens
+import { composedJss } from '../../design/msft';
+import { BaseButton } from './BaseButton';
+import { IButtonProps } from './Button.types';
+import { useButtonState as state } from './Button.state';
+import { ButtonSlots as slots, ButtonView as view } from './Button.view';
+import { pseudoComposed } from '../../utilities/PseudoCompose';
+
+export const MyBaseButton: React.StatelessComponent<IButtonProps> = pseudoComposed({
+  displayName: 'MyBaseButton',
+  slots,
+  state,
+  view
 });
 
-export default MsftButton;
+export default BaseButton;
+
+interface IButtonTokens {
+  borderColorPressed: any;
+  colorPressed: any;
+  colorHovered: any;
+  borderColorHovered: any;
+  minHeight: any;
+  minWidth: any;
+  height: any;
+  cursor: any;
+  color: any;
+  borderWidth: any;
+  borderStyle: any;
+  borderColor: any;
+  childrenGap: { rowGap: any; columnGap: any };
+  outlineColor: any;
+  iconColorHovered: any;
+  backgroundColorPressed: any;
+  backgroundColor: any;
+  borderRadius: any;
+  contentPadding: any;
+  width: any;
+  borderWidthFocused: any;
+  textFamily: any;
+  textSize: any;
+  textWeight: any;
+}
+
+type IMyStyles = any;
+
+const ButtonTokens = (theme: ITheme): IButtonTokens => {
+  const { effects, semanticColors } = theme;
+
+  return {
+    borderRadius: effects.roundedCorner2,
+    borderWidthFocused: 3,
+    borderStyle: 'solid',
+    borderColorPressed: semanticColors.buttonBorder,
+    colorPressed: semanticColors.buttonTextPressed,
+    colorHovered: semanticColors.buttonTextHovered,
+    borderWidth: 1,
+    borderColor: semanticColors.buttonBorder,
+    borderColorHovered: semanticColors.buttonBorder,
+    color: semanticColors.buttonText,
+    iconColorHovered: semanticColors.buttonTextHovered,
+    outlineColor: 'transparent',
+    backgroundColor: semanticColors.buttonBackground,
+    backgroundColorPressed: semanticColors.buttonBackgroundPressed,
+    height: 30,
+    childrenGap: {
+      rowGap: 8,
+      columnGap: 8
+    },
+    contentPadding: '0px 20px',
+    cursor: 'pointer',
+    minHeight: 32,
+    minWidth: 100,
+    width: undefined,
+    textFamily: 'inherit',
+    textSize: 14,
+    textWeight: FontWeights.semibold
+  };
+};
+
+const ButtonStyles = (theme: ITheme, tokens: IButtonTokens): IMyStyles => {
+  const { rowGap, columnGap } = tokens.childrenGap;
+
+  return {
+    root: {
+      alignItems: 'center',
+      backgroundColor: tokens.backgroundColor,
+      borderColor: tokens.borderColor,
+      borderRadius: tokens.borderRadius,
+      borderStyle: tokens.borderStyle,
+      borderWidth: tokens.borderWidth,
+      boxSizing: 'border-box',
+      color: tokens.color,
+      cursor: tokens.cursor,
+      display: 'inline-flex',
+      flexDirection: 'row',
+      fontSize: tokens.textSize,
+      fontWeight: tokens.textWeight,
+      height: tokens.height,
+      justifyContent: 'center',
+      margin: 0,
+      minWidth: tokens.minWidth,
+      minHeight: tokens.minHeight,
+      outlineColor: tokens.outlineColor,
+      overflow: 'hidden',
+      padding: tokens.contentPadding,
+      textAlign: 'center',
+      textDecoration: 'none',
+      userSelect: 'none',
+      verticalAlign: 'baseline',
+      width: tokens.width,
+
+      '& > *': {
+        marginLeft: `${0.5 * rowGap.value}${rowGap.unit} ${0.5 * columnGap.value}${columnGap.unit}`,
+        textOverflow: 'ellipsis'
+      },
+      '& > *:not(:first-child)': {
+        marginLeft: `${columnGap.value}${columnGap.unit}`
+      },
+
+      '&:hover': {
+        backgroundColor: tokens.backgroundColorPressed,
+        borderColor: tokens.borderColorHovered,
+        color: tokens.colorHovered
+      },
+      '&:active': {
+        backgroundColor: tokens.backgroundColorPressed,
+        borderColor: tokens.borderColorPressed,
+        color: tokens.colorPressed
+      }
+    },
+    content: {
+      fontFamily: tokens.textFamily,
+      fontSize: tokens.textSize,
+      fontWeight: tokens.textWeight,
+      overflow: 'visible'
+    }
+  };
+};
+
+export const MsftButton: React.StatelessComponent<IButtonProps> = composedJss(BaseButton, {
+  displayName: 'MsftButton',
+  styles: ButtonStyles,
+  tokens: ButtonTokens
+});

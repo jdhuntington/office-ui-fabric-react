@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { MsftButton } from '../MsftButton';
 import { Stack } from 'office-ui-fabric-react';
+import { FluentTheme } from '@uifabric/fluent-theme';
 
 const tokens = {
   sectionStack: {
@@ -28,6 +29,13 @@ export class ButtonMsftExample extends React.Component<{}, {}> {
       <Stack tokens={tokens.sectionStack}>
         <Stack tokens={tokens.headingStack}>
           <Stack tokens={tokens.buttonStack}>
+            <ButtonStack>
+              <MsftButton content="Default button" />
+              <MsftButton disabled content="Disabled default button" />
+            </ButtonStack>
+          </Stack>
+          <Stack tokens={tokens.buttonStack}>
+            TODO make this show the fluent theme
             <ButtonStack>
               <MsftButton content="Default button" />
               <MsftButton disabled content="Disabled default button" />

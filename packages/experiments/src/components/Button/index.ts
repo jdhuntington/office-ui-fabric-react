@@ -8,3 +8,5 @@ export * from './Button.types';
 
 // Button variants
 export * from './ButtonVariants/index';
+
+export * from './MsftButton';

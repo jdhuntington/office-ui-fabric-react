@@ -72,6 +72,8 @@ export interface IButtonProps
    * @defaultvalue false
    */
   primary?: boolean;
+
+  rootClassName?: string;
 }
 
 /**

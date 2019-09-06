@@ -13,7 +13,19 @@ export const ButtonSlots: IButtonComponent['slots'] = props => ({
 });
 
 export const ButtonView: IButtonComponent['view'] = (props, slots) => {
-  const { icon, content, children, disabled, onClick, allowDisabledFocus, ariaLabel, keytipProps, buttonRef, ...rest } = props;
+  const {
+    rootClassName,
+    icon,
+    content,
+    children,
+    disabled,
+    onClick,
+    allowDisabledFocus,
+    ariaLabel,
+    keytipProps,
+    buttonRef,
+    ...rest
+  } = props;
 
   const { htmlType, propertiesType } = _deriveRootType(props);
 
@@ -28,7 +40,6 @@ export const ButtonView: IButtonComponent['view'] = (props, slots) => {
       }
     }
   };
-
   const Button = (keytipAttributes?: any): JSX.Element => (
     <slots.root
       type={htmlType}
@@ -41,6 +52,7 @@ export const ButtonView: IButtonComponent['view'] = (props, slots) => {
       tabIndex={!disabled || allowDisabledFocus ? 0 : undefined}
       aria-label={ariaLabel}
       ref={buttonRef}
+      className={rootClassName}
     >
       {icon && <slots.icon />}
       {content && <slots.content />}

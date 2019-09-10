@@ -25,6 +25,12 @@ export const AppDefinition: any = {
           key: '003ButtonWithClassNames',
           name: '003 Button With Class Names',
           url: '#/examples/003ButtonWithClassNames'
+        },
+        {
+          component: require<any>('./snippets/010ThemedButtonUsage').Usage,
+          key: '010ThemedButton',
+          name: '010 Themed Button',
+          url: '#/examples/010ThemedButton'
         }
       ]
     }

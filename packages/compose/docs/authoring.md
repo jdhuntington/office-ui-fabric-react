@@ -35,3 +35,7 @@ to make sure and apply the classes in the right cases.
 <codesnippet 003ButtonWithClassNames />
 
 ## Bringing in a theme
+
+Themes are applied with the help of the `compose` method. `compose` will do MAGIC for you, and you'll get a styled component.
+
+<codesnippet 010ThemedButton />

@@ -1,0 +1,15 @@
+file "docs/_authoring.md" => "docs/authoring.md" do |task|
+  source = File.read('docs/authoring.md')
+  result = source.gsub(/<codesnippet (\w+) \/>/) do |a,b,c|
+    sample = "#{$1}.tsx"
+    [
+      '```',
+      File.read(File.join(File.dirname(__FILE__), 'src', 'demo', 'snippets', sample)),
+      '```',   '',
+      "[demo](#/examples/#{$1})",
+  ].join("\n")
+  end
+  File.open("docs/_authoring.md", "w") { |f| f.print result }
+end
+
+task :default => ['docs/_authoring.md']

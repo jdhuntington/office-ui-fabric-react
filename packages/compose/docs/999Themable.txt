@@ -1,0 +1,36 @@
+import * as React from 'react';
+/*
+
+type CompoentClassDefinition = { [className: string]: string };
+
+// tslint:disable-next-line: interface-name
+interface MyButtonProps {
+  children?: any;
+  classes: CompoentClassDefinition;
+}
+
+
+props: {
+  children: "Hello, World!",
+  classes: {
+  root: "button-8e47893223178024",
+  rootDisabled: "button-3423489023480",
+  }
+}
+
+
+export const MyButton: React.FunctionComponent<MyButtonProps> = (props: MyButtonProps) => {
+  return <button className={props.classes.root}>{props.children}</button>;
+};
+
+// fabric 8
+export const FluentButton = compose(MyButton, {
+  name: "FluentButton",
+  styles: {},
+  tokens: {}
+});
+
+
+// sharepoint
+<FluentButton />
+*/

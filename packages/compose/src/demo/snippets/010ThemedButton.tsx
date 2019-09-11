@@ -2,7 +2,7 @@ import { MyButton } from './003ButtonWithClassNames';
 import { ITheme, FontWeights } from '@uifabric/styling';
 import { compose } from '../../compose';
 
-interface IButtonTokens {
+export interface IButtonTokens {
   borderColorPressed: any;
   colorPressed: any;
   colorHovered: any;

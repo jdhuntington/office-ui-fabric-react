@@ -31,6 +31,12 @@ export const AppDefinition: any = {
           key: '010ThemedButton',
           name: '010 Themed Button',
           url: '#/examples/010ThemedButton'
+        },
+        {
+          component: require<any>('./snippets/011TokenedButtonUsage').Usage,
+          key: '011TokenedButton',
+          name: '011 Tokened Button',
+          url: '#/examples/011TokenedButton'
         }
       ]
     }

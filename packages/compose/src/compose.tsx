@@ -9,7 +9,6 @@ const _resolveRecipes = (styles: any, theme: any) => {
 
   // tslint:disable-next-line: forin
   for (const name in styles) {
-    console.log({ where: 'resolveRecipes', name, val: styles[name] });
     const value = resolveWith(styles[name], theme);
 
     if (typeof value === 'object') {
@@ -42,14 +41,6 @@ const _getClasses = ({ theme, name, optionsSet }: any) => {
       styles = merge({}, styles, options.styles(theme, tokens));
     }
   });
-
-  console.log({
-    theme,
-    components,
-    name,
-    optionsSet,
-    styles
-  });
   /*
   optionsSet.forEach((options: any) => {
     const { tokens: themedTokens = {} } = components[options.name] || {};
@@ -66,15 +57,6 @@ const _getClasses = ({ theme, name, optionsSet }: any) => {
       tokens[key] = themedTokens1[key];
     }
   });  */
-
-  console.log({
-    theme,
-    components,
-    name,
-    optionsSet,
-    tokens,
-    styles
-  });
 
   // optionsSet.forEach((options: any) => {
   //   if (options.styles) {

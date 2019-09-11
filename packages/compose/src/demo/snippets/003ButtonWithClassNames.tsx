@@ -17,8 +17,11 @@ export const MyButton: React.FunctionComponent<MyButtonProps> = (props: MyButton
   }
 
   return (
-    <button className={resolvedClassnames} disabled={props.disabled}>
-      {props.children}
-    </button>
+    <div>
+      <button className={resolvedClassnames} disabled={props.disabled}>
+        {props.children}
+      </button>
+      <pre>{JSON.stringify(props.classes, null, 2)}</pre>
+    </div>
   );
 };

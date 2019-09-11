@@ -36,6 +36,24 @@ to make sure and apply the classes in the right cases.
 
 ## Bringing in a theme
 
-Themes are applied with the help of the `compose` method. `compose` will do MAGIC for you, and you'll get a styled component.
+Theme, styles, and tokens are applied with the help of the `compose` method.
 
 <codesnippet 010ThemedButton />
+
+Under the hood, `compose` is quite simple. It performs the following steps:
+
+- Look for an `ITheme` in the context
+- Call the provided `tokens` method
+- Pass the result of `token` to the `styles` method (along with the theme)
+- Take the result of `styles` and generate `classNames`
+- Returns a component that will supply `classNames`
+
+## Why tokens?
+
+In contrast to other iterations, the tokens method is **not allowed** to access
+`props`. With that restriction, a reasonable question is "why have tokens at all?".
+
+In short, tokens allows a developer to build an entirely new control with some very
+small changes to the base component, without needing to know any internals.
+
+<codesnippet 011TokenedButton />

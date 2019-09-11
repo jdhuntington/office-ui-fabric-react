@@ -75,15 +75,19 @@ interface MyButtonProps {
 }
 
 export const MyButton: React.FunctionComponent<MyButtonProps> = (props: MyButtonProps) => {
+  console.log('MyButton render', props);
   let resolvedClassnames = props.classes && props.classes.root;
   if (props.disabled && props.classes && props.classes.rootDisabled) {
     resolvedClassnames = resolvedClassnames + ' ' + props.classes.rootDisabled;
   }
 
   return (
-    <button className={resolvedClassnames} disabled={props.disabled}>
-      {props.children}
-    </button>
+    <div>
+      <button className={resolvedClassnames} disabled={props.disabled}>
+        {props.children}
+      </button>
+      <pre>{JSON.stringify(props.classes, null, 2)}</pre>
+    </div>
   );
 };
 
@@ -93,14 +97,14 @@ export const MyButton: React.FunctionComponent<MyButtonProps> = (props: MyButton
 
 ## Bringing in a theme
 
-Themes are applied with the help of the `compose` method. `compose` will do MAGIC for you, and you'll get a styled component.
+Theme, styles, and tokens are applied with the help of the `compose` method.
 
 ```
 import { MyButton } from './003ButtonWithClassNames';
 import { ITheme, FontWeights } from '@uifabric/styling';
 import { compose } from '../../compose';
 
-interface IButtonTokens {
+export interface IButtonTokens {
   borderColorPressed: any;
   colorPressed: any;
   colorHovered: any;
@@ -232,3 +236,36 @@ export const MyThemedButton = compose(MyButton)({
 ```
 
 [demo](#/examples/010ThemedButton)
+
+Under the hood, `compose` is quite simple. It performs the following steps:
+
+- Look for an `ITheme` in the context
+- Call the provided `tokens` method
+- Pass the result of `token` to the `styles` method (along with the theme)
+- Take the result of `styles` and generate `classNames`
+- Returns a component that will supply `classNames`
+
+## Why tokens?
+
+In contrast to other iterations, the tokens method is **not allowed** to access
+`props`. With that restriction, a reasonable question is "why have tokens at all?".
+
+In short, tokens allows a developer to build an entirely new control with some very
+small changes to the base component, without needing to know any internals.
+
+```
+import { MyThemedButton } from './010ThemedButton';
+import { compose } from '../../compose';
+
+const myRedButtonTokens = {
+  backgroundColor: 'red'
+};
+
+export const MyRedButton = compose(MyThemedButton)({
+  name: 'MyRedButton',
+  tokens: () => myRedButtonTokens
+});
+
+```
+
+[demo](#/examples/011TokenedButton)

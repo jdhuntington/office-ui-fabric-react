@@ -1,3 +1,4 @@
+/* tslint:disable:deprecation */
 import { mergeStyleSets } from './mergeStyleSets';
 import { Stylesheet, InjectionMode } from './Stylesheet';
 import { IStyleSet } from './IStyleSet';

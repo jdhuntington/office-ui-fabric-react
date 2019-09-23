@@ -4,6 +4,7 @@ import { EditorWrapper } from '../components/EditorWrapper';
 
 const example = require('!raw-loader!../transpiler/examples/class.txt');
 
+// tslint:disable-next-line: deprecation
 const classNames = mergeStyleSets({
   component: {
     border: '1px solid lightgray'

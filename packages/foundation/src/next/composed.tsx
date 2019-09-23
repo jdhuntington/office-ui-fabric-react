@@ -192,6 +192,7 @@ export function composed<
           if (!defaultStyles) {
             defaultStyles = _resolveStyles(componentProps, theme, tokens, options.styles, settings.styles);
           }
+          // tslint:disable-next-line: deprecation
           current.map[key] = { className: mergeStyles(defaultStyles[key]), map: {} };
         }
         finalStyles[key] = current.map[key].className;
@@ -207,8 +208,10 @@ export function composed<
           const userStyleKeys = Object.keys(userStyles);
           for (const key of userStyleKeys) {
             if (finalStyles.hasOwnProperty(key)) {
+              // tslint:disable-next-line: deprecation
               finalStyles[key] = mergeStyles([current.map[key].className], userStyles[key]);
             } else {
+              // tslint:disable-next-line: deprecation
               finalStyles[key] = mergeStyles(userStyles[key]);
             }
           }

@@ -191,6 +191,7 @@ function _constructFinalProps<TProps extends IProcessedSlotProps>(defaultStyles:
     assign(finalProps, ...(props as any));
   }
 
+  // tslint:disable-next-line: deprecation
   finalProps.className = mergeStyles(defaultStyles, classNames);
 
   return finalProps;

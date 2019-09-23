@@ -6,6 +6,7 @@ import { mergeStyles, initializeIcons, Fabric } from 'office-ui-fabric-react';
 initializeIcons();
 
 // Inject some global styles
+// tslint:disable-next-line: deprecation
 mergeStyles({
   selectors: {
     ':global(body), :global(html), :global(#app)': {

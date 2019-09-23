@@ -1,4 +1,4 @@
-import { mergeStyleSetsWithOptions, IStyleSet, IProcessedStyleSet, Stylesheet } from '@uifabric/merge-styles';
+import { mergeCssSets, IStyleSet, IProcessedStyleSet, Stylesheet } from '@uifabric/merge-styles';
 import { IStyleFunctionOrObject } from '@uifabric/merge-styles';
 import { getRTL } from './rtl';
 
@@ -78,9 +78,14 @@ export function classNamesFunction<TStyleProps extends {}, TStyleSet extends ISt
       if (styleFunctionOrObject === undefined) {
         (current as any)[RetVal] = {} as IProcessedStyleSet<TStyleSet>;
       } else {
-        (current as any)[RetVal] = mergeStyleSetsWithOptions({ rtl: !!rtl }, (typeof styleFunctionOrObject === 'function'
-          ? styleFunctionOrObject(styleProps)
-          : styleFunctionOrObject) as IStyleSet<TStyleSet>);
+        (current as any)[RetVal] = mergeCssSets(
+          [
+            (typeof styleFunctionOrObject === 'function' ? styleFunctionOrObject(styleProps) : styleFunctionOrObject) as IStyleSet<
+              TStyleSet
+            >
+          ],
+          { rtl: !!rtl }
+        );
       }
 
       if (!disableCaching) {

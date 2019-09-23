@@ -63,6 +63,7 @@ for (const key of Object.keys(style)) {
   }
 }
 
+// tslint:disable-next-line: deprecation
 const rootClass = mergeStyles({
   maxHeight: 400
 });

@@ -12,6 +12,8 @@ import { applyRegistration, styleToRegistration } from './styleToClassName';
  * `mergeStyles` for each property in the object, but ensures we maintain the
  * set ordering when multiple style sets are merged.
  *
+ * @deprecated Use mergeCssSets instead
+ *
  * @param styleSet - The first style set to be merged and reigstered.
  */
 export function mergeStyleSets<TStyleSet extends IStyleSet<TStyleSet>>(
@@ -23,6 +25,8 @@ export function mergeStyleSets<TStyleSet extends IStyleSet<TStyleSet>>(
  * each which will produce a class name. Using this is analogous to calling
  * `mergeStyles` for each property in the object, but ensures we maintain the
  * set ordering when multiple style sets are merged.
+ *
+ * @deprecated Use mergeCssSets instead
  *
  * @param styleSet1 - The first style set to be merged.
  * @param styleSet2 - The second style set to be merged.
@@ -37,6 +41,8 @@ export function mergeStyleSets<TStyleSet1 extends IStyleSet<TStyleSet1>, TStyleS
  * each which will produce a class name. Using this is analogous to calling
  * `mergeStyles` for each property in the object, but ensures we maintain the
  * set ordering when multiple style sets are merged.
+ *
+ * @deprecated Use mergeCssSets instead
  *
  * @param styleSet1 - The first style set to be merged.
  * @param styleSet2 - The second style set to be merged.
@@ -57,6 +63,8 @@ export function mergeStyleSets<
  * each which will produce a class name. Using this is analogous to calling
  * `mergeStyles` for each property in the object, but ensures we maintain the
  * set ordering when multiple style sets are merged.
+ *
+ * @deprecated Use mergeCssSets instead
  *
  * @param styleSet1 - The first style set to be merged.
  * @param styleSet2 - The second style set to be merged.
@@ -81,6 +89,8 @@ export function mergeStyleSets<
  * `mergeStyles` for each property in the object, but ensures we maintain the
  * set ordering when multiple style sets are merged.
  *
+ * @deprecated Use mergeCssSets instead
+ *
  * @param styleSets - One or more style sets to be merged.
  */
 export function mergeStyleSets(...styleSets: Array<IStyleSet<any> | undefined | false | null>): IProcessedStyleSet<any>;
@@ -90,6 +100,8 @@ export function mergeStyleSets(...styleSets: Array<IStyleSet<any> | undefined | 
  * each which will produce a class name. Using this is analogous to calling
  * `mergeStyles` for each property in the object, but ensures we maintain the
  * set ordering when multiple style sets are merged.
+ *
+ * @deprecated Use mergeCssSets instead
  *
  * @param styleSets - One or more style sets to be merged.
  */

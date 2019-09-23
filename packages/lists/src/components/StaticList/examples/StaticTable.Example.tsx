@@ -12,6 +12,7 @@ function generateItems(count: number): number[] {
 
 const ITEMS: ReadonlyArray<number> = generateItems(25);
 
+// tslint:disable-next-line: deprecation
 const tableClassName = mergeStyles({
   borderCollapse: 'collapse',
   selectors: {

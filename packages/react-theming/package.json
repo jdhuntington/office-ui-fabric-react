@@ -18,14 +18,14 @@
     "start-test": "just-scripts jest-watch",
     "update-api": "just-scripts update-api"
   },
-  "dependencies": {
-    "@uifabric/merge-styles": "^7.8.1"
-  },
   "devDependencies": {
-    "@types/react": "^16.8.10",
-    "react": "^16.8.0"
+    "@types/jest": "23.0.0",
+    "@uifabric/prettier-rules": "^7.0.4",
+    "@uifabric/tslint-rules": "^7.0.5",
+    "@uifabric/build": "^7.0.0"
   },
-  "peerDependencies": {
-    "react": ">=16.8.0"
+  "dependencies": {
+    "@uifabric/set-version": "^7.0.2",
+    "tslib": "^1.7.1"
   }
 }

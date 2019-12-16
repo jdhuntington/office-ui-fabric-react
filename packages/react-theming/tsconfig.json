@@ -1,26 +1,19 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "dist",
     "target": "es5",
+    "outDir": "lib",
     "module": "commonjs",
+    "lib": ["es5", "dom"],
     "jsx": "react",
     "declaration": true,
     "sourceMap": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "noUnusedLocals": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
     "moduleResolution": "node",
     "preserveConstEnums": true,
-    "lib": ["es5", "dom"],
-    "types": ["jest", "webpack-env"],
-    "paths": {
-      "@uifabric/react-hooks/lib/*": ["./src/*"],
-      "@uifabric/react-hooks": ["./src"]
-    }
+    "types": ["jest"]
   },
   "include": ["src"]
 }

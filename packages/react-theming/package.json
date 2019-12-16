@@ -22,8 +22,6 @@
     "@uifabric/merge-styles": "^7.8.1"
   },
   "devDependencies": {
-    "@fluentui/scripts": "0.41.0",
-    "@types/jss": "^9.5.8",
     "@types/react": "^16.8.10",
     "react": "^16.8.0"
   },

@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import { cx } from './classnames';
 
 export interface IStandardProps {
   id?: string;
@@ -12,6 +12,7 @@ export interface IStandardProps {
 
 export const mergeSlotProps = <TUserProps extends IStandardProps>(
   userProps: TUserProps = {} as any,
+  // tslint:disable-next-line:missing-optional-annotation
   baseSlotProps: TUserProps['slotProps']
 ) => {
   const userSlotProps: any = userProps.slotProps || {};
@@ -19,18 +20,20 @@ export const mergeSlotProps = <TUserProps extends IStandardProps>(
 
   // First distribute standard userProps.
   for (const name in baseSlotProps) {
-    const isRoot = name === 'root';
+    if (baseSlotProps.hasOwnProperty(name)) {
+      const isRoot = name === 'root';
 
-    baseSlotProps[name] = {
-      ...(isRoot && {
-        id,
-        name,
-        style
-      }),
-      ...baseSlotProps[name],
-      ...userSlotProps[name],
-      className: cx(isRoot && className, (classes as any)[name], baseSlotProps[name].className)
-    };
+      baseSlotProps[name] = {
+        ...(isRoot && {
+          id,
+          name,
+          style
+        }),
+        ...baseSlotProps[name],
+        ...userSlotProps[name],
+        className: cx(isRoot && className, (classes as any)[name], baseSlotProps[name].className)
+      };
+    }
   }
 
   return baseSlotProps;

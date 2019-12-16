@@ -3,10 +3,10 @@ import { ITheme } from './theme.types';
 type TokenDict = { [name: string]: IToken };
 
 interface IToken {
-  resolve(theme: any): void;
   value: any;
   isResolvable: boolean;
   isResolved: boolean;
+  resolve(theme: any): void;
 }
 
 class LiteralToken implements IToken {
@@ -14,17 +14,21 @@ class LiteralToken implements IToken {
   public isResolved = true;
 
   constructor(public name: string, public value: string | number) {}
-  resolve(theme: any): void {}
+
+  public resolve(theme: any): void {
+    // noop
+  }
 }
 
 class FunctionToken implements IToken {
+  public value: any;
   private _isResolved: boolean = false;
 
-  static fromFunction(tokens: TokenDict, name: string, rawToken: any): IToken {
+  public static fromFunction(tokens: TokenDict, name: string, rawToken: any): IToken {
     return new FunctionToken(tokens, name, rawToken, []);
   }
 
-  static fromObject(tokens: TokenDict, name: string, rawToken: any): IToken {
+  public static fromObject(tokens: TokenDict, name: string, rawToken: any): IToken {
     return new FunctionToken(tokens, name, rawToken.resolve, rawToken.dependsOn);
   }
 
@@ -35,17 +39,15 @@ class FunctionToken implements IToken {
     public deps: string | string[]
   ) {}
 
-  public value: any;
-
-  resolve(theme: any): void {
+  public resolve(theme: any): void {
     const deps = Array.isArray(this.deps) ? this.deps : [this.deps];
-    const resolvedDeps = deps.map(d => this.tokens[d].value);
+    const resolvedDeps = deps.map((d: string) => this.tokens[d].value);
     this.value = this.valueFn ? this.valueFn(resolvedDeps, theme) : resolvedDeps[0];
     this._isResolved = true;
   }
 
   get isResolvable(): boolean {
-    return Array.isArray(this.deps) ? this.deps.every(e => this.tokens[e].isResolved) : this.tokens[this.deps].isResolved;
+    return Array.isArray(this.deps) ? this.deps.every((e: string) => this.tokens[e].isResolved) : this.tokens[this.deps].isResolved;
   }
 
   get isResolved(): boolean {
@@ -54,7 +56,7 @@ class FunctionToken implements IToken {
 }
 
 class TokenFactory {
-  static from(tokens: TokenDict, rawToken: any, name: string): IToken {
+  public static from(tokens: TokenDict, rawToken: any, name: string): IToken {
     switch (typeof rawToken) {
       case 'string':
       case 'number':
@@ -80,16 +82,20 @@ class TokenFactory {
 export const resolveTokens = (name: string | undefined, theme: ITheme, sourceTokensSet: any[]) => {
   const tokens: TokenDict = {};
 
-  sourceTokensSet.forEach(sourceTokens => {
+  sourceTokensSet.forEach((sourceTokens: any) => {
     for (const tokenName in sourceTokens) {
-      tokens[tokenName] = TokenFactory.from(tokens, sourceTokens[tokenName], tokenName);
+      if (sourceTokens.hasOwnProperty(tokenName)) {
+        tokens[tokenName] = TokenFactory.from(tokens, sourceTokens[tokenName], tokenName);
+      }
     }
   });
 
   if (name && theme.components[name] && theme.components[name].tokens) {
     const sourceTokens = theme.components[name].tokens;
     for (const tokenName in sourceTokens) {
-      tokens[tokenName] = TokenFactory.from(tokens, sourceTokens[tokenName], tokenName);
+      if (sourceTokens.hasOwnProperty(tokenName)) {
+        tokens[tokenName] = TokenFactory.from(tokens, sourceTokens[tokenName], tokenName);
+      }
     }
   }
 
@@ -99,16 +105,18 @@ export const resolveTokens = (name: string | undefined, theme: ITheme, sourceTok
     let progressed = false;
 
     for (const tokenName in tokens) {
-      const token = tokens[tokenName];
-      if (token.isResolved) {
-        continue;
+      if (tokens.hasOwnProperty(tokenName)) {
+        const token = tokens[tokenName];
+        if (token.isResolved) {
+          continue;
+        }
+        allResolved = false;
+        if (!token.isResolvable) {
+          continue;
+        }
+        token.resolve(theme);
+        progressed = true;
       }
-      allResolved = false;
-      if (!token.isResolvable) {
-        continue;
-      }
-      token.resolve(theme);
-      progressed = true;
     }
     if (!allResolved && !progressed) {
       throw new Error('Token deadlock');
@@ -117,7 +125,9 @@ export const resolveTokens = (name: string | undefined, theme: ITheme, sourceTok
 
   const result: any = {};
   for (const tokenName in tokens) {
-    result[tokenName] = tokens[tokenName].value;
+    if (tokens.hasOwnProperty(tokenName)) {
+      result[tokenName] = tokens[tokenName].value;
+    }
   }
 
   return result;

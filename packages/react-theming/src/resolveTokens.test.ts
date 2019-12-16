@@ -112,7 +112,7 @@ describe('resolveTokens', () => {
             tokens: {
               value2: {
                 dependsOn: ['value'],
-                resolve: ([value]: any, theme: ITheme) => `${value}bar`
+                resolve: ([value]: any, _: ITheme) => `${value}bar`
               }
             }
           }
@@ -122,7 +122,7 @@ describe('resolveTokens', () => {
         value: 'foo',
         value2: {
           dependsOn: ['value'],
-          resolve: ([value]: any, theme: ITheme) => `${value}foo`
+          resolve: ([value]: any, _: ITheme) => `${value}foo`
         }
       };
       const result = resolveTokens('MyComponent', theme, [baseTokens]);

@@ -6,6 +6,7 @@ const defaultTheme: IPartialTheme = {
     background: 'white'
   },
   fonts: {
+    // tslint:disable-next-line:max-line-length
     default: `"Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif`
   },
   components: {}
@@ -31,9 +32,10 @@ export function createTheme(baseTheme: IBaseTheme, ...themes: IPartialTheme[]): 
     };
 
     for (const schemeName in schemes) {
-      const scheme = schemes[schemeName];
-
-      finalTheme.schemes[schemeName] = merge({}, finalTheme, scheme);
+      if (schemes.hasOwnProperty(schemeName)) {
+        const scheme = schemes[schemeName];
+        finalTheme.schemes[schemeName] = merge({}, finalTheme, scheme);
+      }
     }
   }
 

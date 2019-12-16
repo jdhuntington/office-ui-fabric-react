@@ -1,3 +1,3 @@
-const config = require('@fluentui/scripts/config/jest/jest.common');
+let { createConfig } = require('@uifabric/build/jest/jest-resources');
 
-module.exports = config;
+module.exports = createConfig();

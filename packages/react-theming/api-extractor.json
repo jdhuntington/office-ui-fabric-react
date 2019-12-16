@@ -1,3 +1,13 @@
 {
-  "extends": "@fluentui/scripts/config/api-extractor/api-extractor.common.json"
+  "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+  "mainEntryPointFilePath": "<projectFolder>/lib/index.d.ts",
+  "docModel": {
+    "enabled": true
+  },
+  "dtsRollup": {
+    "enabled": true
+  },
+  "apiReport": {
+    "enabled": true
+  }
 }

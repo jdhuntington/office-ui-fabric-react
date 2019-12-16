@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cx from 'classnames';
+import { cx } from './../../utilities/classnames';
 
 export interface IPrimitiveProps extends React.AllHTMLAttributes<any> {
   as?: any;

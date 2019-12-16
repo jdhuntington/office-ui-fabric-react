@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { _composeFactory } from './compose';
 import { ITheme } from './theme.types';
 
@@ -95,10 +95,7 @@ describe('compose', () => {
         { name: 'Mock' }
       );
       composed({});
-      expect(mock).toBeCalledWith({
-        slots: {},
-        classes: {}
-      });
+      expect(mock).toBeCalledWith({ classes: { subComponentStyles: {} }, slots: {} });
     });
 
     it('calls the base component with correct slot values when slots have been mixed', () => {
@@ -126,7 +123,7 @@ describe('compose', () => {
           bar: 'bar2',
           baz: 'baz2'
         },
-        classes: {}
+        classes: { subComponentStyles: {} }
       });
     });
 
@@ -140,7 +137,7 @@ describe('compose', () => {
       expect(mock).toBeCalledWith({
         slots: {},
         foo: 'bar',
-        classes: {}
+        classes: { subComponentStyles: {} }
       });
     });
   });
@@ -151,7 +148,6 @@ describe('compose', () => {
         foo: 'bar'
       });
     });
-    it("merges slots that don't overlap", () => {});
     it('returns empty when no options provided', () => {
       expect(compose.resolveSlots('', [], makeBlankTheme())).toEqual({});
     });

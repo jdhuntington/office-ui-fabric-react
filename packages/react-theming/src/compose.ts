@@ -44,7 +44,6 @@ export const _composeFactory = (useThemeHook: any = useTheme) => {
     const optionsSet = _mergeOptions(options, baseComponent.__optionsSet);
 
     const componentName = options.name || baseComponent.displayName;
-
     const renderFn = baseComponent.__directRender || baseComponent.render || baseComponent;
     const Component: IComposedFunctionComponent<TProps> = (props: TProps) => {
       const theme: ITheme = useThemeHook();

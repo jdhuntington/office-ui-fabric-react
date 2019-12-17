@@ -61,6 +61,7 @@
     "@uifabric/foundation": "^7.5.0",
     "@uifabric/icons": "^7.3.0",
     "@uifabric/merge-styles": "^7.8.1",
+    "@uifabric/react-theming": "^0.0.1",
     "@uifabric/set-version": "^7.0.2",
     "@uifabric/styling": "^7.7.4",
     "@uifabric/theme-samples": "^7.0.5",

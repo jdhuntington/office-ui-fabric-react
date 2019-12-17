@@ -1,16 +1,19 @@
+import {
+  ICheckboxStyleProps,
+  IKeytipProps,
+  ILabelStyleProps,
+  IPanelStyleProps,
+  IRenderFunction,
+  ISelectableDroppableTextProps,
+  ISelectableOption,
+  IStyle,
+  IStyleFunctionOrObject,
+  ITheme,
+  ResponsiveMode
+} from 'office-ui-fabric-react';
 import * as React from 'react';
-import { IRenderFunction, IStyleFunctionOrObject } from '../../Utilities';
-import { IStyle, ITheme } from '../../Styling';
-import { ISelectableOption } from '../../utilities/selectableOption/SelectableOption.types';
-import { ISelectableDroppableTextProps } from '../../utilities/selectableOption/SelectableDroppableText.types';
-import { ResponsiveMode } from '../../utilities/decorators/withResponsiveMode';
-import { IKeytipProps } from '../../Keytip';
-import { RectangleEdge } from '../../utilities/positioning';
-import { ICheckboxStyleProps } from '../Checkbox/Checkbox.types';
-import { ILabelStyleProps } from '../Label/Label.types';
-import { IPanelStyleProps } from '../Panel/Panel.types';
 
-export { SelectableOptionMenuItemType as DropdownMenuItemType } from '../../utilities/selectableOption/SelectableOption.types';
+export { SelectableOptionMenuItemType as DropdownMenuItemType } from 'office-ui-fabric-react';
 
 export { ResponsiveMode }; // Exported because the type is an optional prop and not exported otherwise.
 
@@ -192,7 +195,7 @@ export type IDropdownStyleProps = Pick<IDropdownProps, 'theme' | 'className' | '
   /**
    * Prop to notify on what edge the dropdown callout was positioned respective to the title.
    */
-  calloutRenderEdge?: RectangleEdge;
+  calloutRenderEdge?: any;
 };
 
 /**

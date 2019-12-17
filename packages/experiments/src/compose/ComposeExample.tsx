@@ -1,9 +1,24 @@
 import { ComponentPage, ExampleCard, IComponentDemoPageProps } from '@uifabric/example-app-base';
-import { Slider, ChoiceGroup } from 'office-ui-fabric-react';
+import { ITheme, ThemeProvider } from '@uifabric/react-theming';
+import { ChoiceGroup, DropdownMenuItemType, IDropdownOption, Slider, Dropdown } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { ThemeProvider, ITheme } from '@uifabric/react-theming';
-import { MySlider } from './SliderCompose';
+
 import { MyChoiceGroup } from './ChoiceGroupCompose';
+import { MySlider } from './SliderCompose';
+import { MyDropdown } from './DropdownCompose';
+
+const options: IDropdownOption[] = [
+  { key: 'fruitsHeader', text: 'Fruits', itemType: DropdownMenuItemType.Header },
+  { key: 'apple', text: 'Apple' },
+  { key: 'banana', text: 'Banana' },
+  { key: 'orange', text: 'Orange', disabled: true },
+  { key: 'grape', text: 'Grape' },
+  { key: 'divider_1', text: '-', itemType: DropdownMenuItemType.Divider },
+  { key: 'vegetablesHeader', text: 'Vegetables', itemType: DropdownMenuItemType.Header },
+  { key: 'broccoli', text: 'Broccoli' },
+  { key: 'carrot', text: 'Carrot' },
+  { key: 'lettuce', text: 'Lettuce' }
+];
 
 const theme: ITheme = {
   direction: 'ltr',
@@ -118,6 +133,14 @@ export class ComposeExample extends React.Component<IComponentDemoPageProps, {}>
                   label="Pick one"
                   required={true}
                 />
+              </ThemeProvider>
+            </ExampleCard>
+            <ExampleCard title="Dropdown (OUFR)">
+              <Dropdown placeholder="Select an option" label="Basic uncontrolled example" options={options} />
+            </ExampleCard>
+            <ExampleCard title="Dropdown (Composed)">
+              <ThemeProvider theme={theme}>
+                <MyDropdown placeholder="Select an option" label="Basic uncontrolled example" options={options} />
               </ThemeProvider>
             </ExampleCard>
           </div>

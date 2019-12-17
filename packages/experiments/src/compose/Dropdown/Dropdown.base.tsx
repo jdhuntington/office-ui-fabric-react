@@ -1,56 +1,63 @@
-declare function setTimeout(callback: (...args: any[]) => void, ms: number, ...args: any[]): number;
-
-import * as React from 'react';
 import {
-  IStyleFunctionOrObject,
-  KeyCodes,
+  Callout,
+  Checkbox,
   classNamesFunction,
+  CommandButton,
+  DirectionalHint,
   divProperties,
   findIndex,
+  FocusZone,
+  FocusZoneDirection,
+  getAllSelectedOptions,
   getDocument,
   getFirstFocusable,
   getId,
   getLastFocusable,
   getNativeProps,
+  ICheckboxStyleProps,
+  ICheckboxStyles,
+  Icon,
+  ILabelStyleProps,
+  ILabelStyles,
   initializeComponentRef,
+  IPanelStyleProps,
+  IPanelStyles,
+  IProcessedStyleSet,
+  ISelectableDroppableTextProps,
   isIOS,
   isMac,
+  IStyleFunctionOrObject,
+  KeyCodes,
+  KeytipData,
+  Label,
   mergeAriaAttributeValues,
+  Panel,
+  ResponsiveMode,
   safeRequestAnimationFrame,
+  SelectableOptionMenuItemType,
   warnDeprecations,
   warnMutuallyExclusive
-} from '../../Utilities';
-import { Callout } from '../../Callout';
-import { Checkbox, ICheckboxStyleProps, ICheckboxStyles } from '../../Checkbox';
-import { CommandButton } from '../../Button';
-import { DirectionalHint } from '../../common/DirectionalHint';
-import { DropdownMenuItemType, IDropdownOption, IDropdownProps, IDropdownStyleProps, IDropdownStyles, IDropdown } from './Dropdown.types';
+} from 'office-ui-fabric-react';
+import * as React from 'react';
+
+import { DropdownMenuItemType, IDropdown, IDropdownOption, IDropdownProps, IDropdownStyleProps, IDropdownStyles } from './Dropdown.types';
 import { DropdownSizePosCache } from './utilities/DropdownSizePosCache';
-import { FocusZone, FocusZoneDirection } from '../../FocusZone';
-import { ICalloutPositionedInfo, RectangleEdge } from '../../utilities/positioning';
-import { Icon } from '../../Icon';
-import { ILabelStyleProps, ILabelStyles, Label } from '../../Label';
-import { IProcessedStyleSet } from '../../Styling';
-import { IWithResponsiveModeState } from '../../utilities/decorators/withResponsiveMode';
-import { KeytipData } from '../../KeytipData';
-import { Panel, IPanelStyleProps, IPanelStyles } from '../../Panel';
-import { ResponsiveMode, withResponsiveMode } from '../../utilities/decorators/withResponsiveMode';
-import { SelectableOptionMenuItemType, getAllSelectedOptions, ISelectableDroppableTextProps } from '../../utilities/selectableOption/index';
+
+declare function setTimeout(callback: (...args: any[]) => void, ms: number, ...args: any[]): number;
 
 const getClassNames = classNamesFunction<IDropdownStyleProps, IDropdownStyles>();
 
 /** Internal only props interface to support mixing in responsive mode */
-export interface IDropdownInternalProps extends IDropdownProps, IWithResponsiveModeState {}
+export interface IDropdownInternalProps extends IDropdownProps {}
 
 export interface IDropdownState {
   isOpen: boolean;
   selectedIndices: number[];
   /** Whether the root dropdown element has focus. */
   hasFocus: boolean;
-  calloutRenderEdge?: RectangleEdge;
+  calloutRenderEdge?: any;
 }
 
-@withResponsiveMode
 export class DropdownBase extends React.Component<IDropdownInternalProps, IDropdownState> implements IDropdown {
   public static defaultProps = {
     options: [] as any[]
@@ -237,19 +244,7 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
             ariaPosInSet: this._sizePosCache.positionInSet(selectedIndices[0]),
             ariaSelected: selectedIndices[0] === undefined ? undefined : true
           };
-    this._classNames = getClassNames(propStyles, {
-      theme,
-      className,
-      hasError: !!(errorMessage && errorMessage.length > 0),
-      hasLabel: !!label,
-      isOpen,
-      required,
-      disabled,
-      isRenderingPlaceholder: !selectedOptions.length,
-      panelClassName: !!panelProps ? panelProps.className : undefined,
-      calloutClassName: !!calloutProps ? calloutProps.className : undefined,
-      calloutRenderEdge: calloutRenderEdge
-    });
+    this._classNames = this._getClassNames();
 
     const hasErrorMessage: boolean = !!errorMessage && errorMessage.length > 0;
 
@@ -708,7 +703,7 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
     return onRenderOption(item, this._onRenderOption);
   };
 
-  private _onPositioned = (positions?: ICalloutPositionedInfo): void => {
+  private _onPositioned = (positions?: any): void => {
     if (this._focusZone.current) {
       // Focusing an element can trigger a reflow. Making this wait until there is an animation
       // frame can improve perf significantly.
@@ -1171,5 +1166,47 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
     const { hasFocus } = this.state;
     const { openOnKeyboardFocus } = this.props;
     return !this._isFocusedByClick && openOnKeyboardFocus === true && !hasFocus;
+  }
+
+  private _getClassNames(): any {
+    if ((this.props as any).classes) {
+      return (this.props as any).classes;
+    }
+    const props = this.props;
+    const {
+      className,
+      label,
+      options,
+      ariaLabel,
+      required,
+      errorMessage,
+      keytipProps,
+      styles: propStyles,
+      theme,
+      panelProps,
+      calloutProps,
+      multiSelect,
+      onRenderTitle = this._onRenderTitle,
+      onRenderContainer = this._onRenderContainer,
+      onRenderCaretDown = this._onRenderCaretDown,
+      onRenderLabel = this._onRenderLabel
+    } = props;
+    const { isOpen, selectedIndices, calloutRenderEdge } = this.state;
+    const selectedOptions = getAllSelectedOptions(options, selectedIndices);
+    const disabled = this._isDisabled();
+
+    return getClassNames(propStyles, {
+      theme,
+      className,
+      hasError: !!(errorMessage && errorMessage.length > 0),
+      hasLabel: !!label,
+      isOpen,
+      required,
+      disabled,
+      isRenderingPlaceholder: !selectedOptions.length,
+      panelClassName: !!panelProps ? panelProps.className : undefined,
+      calloutClassName: !!calloutProps ? calloutProps.className : undefined,
+      calloutRenderEdge: calloutRenderEdge
+    });
   }
 }

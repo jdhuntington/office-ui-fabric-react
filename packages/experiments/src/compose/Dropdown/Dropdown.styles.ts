@@ -1,6 +1,5 @@
 import { IDropdownStyles, IDropdownStyleProps } from './Dropdown.types';
 import { IStyleFunction, IsFocusVisibleClassName } from '../../Utilities';
-import { RectangleEdge } from '../../utilities/positioning';
 import {
   FontWeights,
   HighContrastSelector,
@@ -172,12 +171,12 @@ export const getStyles: IStyleFunction<IDropdownStyleProps, IDropdownStyles> = p
   ];
 
   const titleOpenBorderRadius =
-    calloutRenderEdge === RectangleEdge.bottom
+    calloutRenderEdge === 'foo'
       ? `${effects.roundedCorner2} ${effects.roundedCorner2} 0 0`
       : `0 0 ${effects.roundedCorner2} ${effects.roundedCorner2}`;
 
   const calloutOpenBorderRadius =
-    calloutRenderEdge === RectangleEdge.bottom
+    calloutRenderEdge === 'bar'
       ? `0 0 ${effects.roundedCorner2} ${effects.roundedCorner2}`
       : `${effects.roundedCorner2} ${effects.roundedCorner2} 0 0`;
 

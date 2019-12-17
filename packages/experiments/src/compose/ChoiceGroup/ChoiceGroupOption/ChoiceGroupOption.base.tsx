@@ -43,16 +43,7 @@ export class ChoiceGroupOptionBase extends React.Component<IChoiceGroupOptionPro
       ...rest
     } = this.props;
 
-    this._classNames = getClassNames(styles!, {
-      theme: theme!,
-      hasIcon: !!iconProps,
-      hasImage: !!imageSrc,
-      checked,
-      disabled,
-      imageIsLarge: !!imageSrc && (imageSize.width > 71 || imageSize.height > 71),
-      imageSize,
-      focused
-    });
+    this._classNames = this._getClassNames();
 
     const { className, ...nativeProps } = getNativeProps<{ className: string }>(rest, inputProperties);
 
@@ -136,4 +127,36 @@ export class ChoiceGroupOptionBase extends React.Component<IChoiceGroupOptionPro
       </span>
     );
   };
+
+  private _getClassNames() {
+    if ((this.props as any).classes) {
+      return (this.props as any).classes;
+    }
+    const {
+      ariaLabel,
+      focused,
+      required,
+      theme,
+      iconProps,
+      imageSrc,
+      imageSize = { width: 32, height: 32 },
+      disabled,
+      checked,
+      id,
+      styles,
+      name,
+      onRenderField = this._onRenderField,
+      ...rest
+    } = this.props;
+    return getClassNames(styles!, {
+      theme: theme!,
+      hasIcon: !!iconProps,
+      hasImage: !!imageSrc,
+      checked,
+      disabled,
+      imageIsLarge: !!imageSrc && (imageSize.width > 71 || imageSize.height > 71),
+      imageSize,
+      focused
+    });
+  }
 }

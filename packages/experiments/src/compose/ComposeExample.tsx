@@ -92,31 +92,33 @@ export class ComposeExample extends React.Component<IComponentDemoPageProps, {}>
               />
             </ExampleCard>
             <ExampleCard title="ChoiceGroup (Composed)">
-              <MyChoiceGroup
-                className="defaultChoiceGroup"
-                defaultSelectedKey="B"
-                options={[
-                  {
-                    key: 'A',
-                    text: 'Option A'
-                  },
-                  {
-                    key: 'B',
-                    text: 'Option B'
-                  },
-                  {
-                    key: 'C',
-                    text: 'Option C',
-                    disabled: true
-                  },
-                  {
-                    key: 'D',
-                    text: 'Option D'
-                  }
-                ]}
-                label="Pick one"
-                required={true}
-              />
+              <ThemeProvider theme={theme}>
+                <MyChoiceGroup
+                  className="defaultChoiceGroup"
+                  defaultSelectedKey="B"
+                  options={[
+                    {
+                      key: 'A',
+                      text: 'Option A'
+                    },
+                    {
+                      key: 'B',
+                      text: 'Option B'
+                    },
+                    {
+                      key: 'C',
+                      text: 'Option C',
+                      disabled: true
+                    },
+                    {
+                      key: 'D',
+                      text: 'Option D'
+                    }
+                  ]}
+                  label="Pick one"
+                  required={true}
+                />
+              </ThemeProvider>
             </ExampleCard>
           </div>
         }

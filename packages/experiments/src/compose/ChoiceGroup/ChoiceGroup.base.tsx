@@ -13,7 +13,7 @@ import {
   warnMutuallyExclusive
 } from '../../Utilities';
 import { IChoiceGroup, IChoiceGroupOption, IChoiceGroupProps, IChoiceGroupStyleProps, IChoiceGroupStyles } from './ChoiceGroup.types';
-import { ChoiceGroupOption } from './ChoiceGroupOption/ChoiceGroupOption';
+import { MyChoiceGroupOption as ChoiceGroupOption } from './ChoiceGroupOption/ChoiceGroupOptionCompose';
 import { IChoiceGroupOptionProps } from './ChoiceGroupOption/ChoiceGroupOption.types';
 
 const getClassNames = classNamesFunction<IChoiceGroupStyleProps, IChoiceGroupStyles>();

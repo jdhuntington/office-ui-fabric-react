@@ -19,8 +19,7 @@ const legacyStyleMapper = (styleFn: any) => {
 
 export const MySlider = compose(
   (props: any) => {
-    const { classes, ...rest } = props;
-    return <SliderBase {...rest} classNames={classes} />;
+    return <SliderBase {...props} />;
   },
   {
     tokens: legacyTokenMapper,

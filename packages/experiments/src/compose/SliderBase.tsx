@@ -58,6 +58,35 @@ export class SliderBase extends BaseComponent<ISliderProps, ISliderState> implem
     };
   }
 
+  public getClassNames(): any {
+    const {
+      ariaLabel,
+      className,
+      disabled,
+      label,
+      max,
+      min,
+      showValue,
+      buttonProps,
+      vertical,
+      valueFormat,
+      styles,
+      theme,
+      originFromZero
+    } = this.props;
+    if ((this.props as any).classes) {
+      return (this.props as any).classes;
+    }
+    return getClassNames(styles, {
+      className,
+      disabled,
+      vertical,
+      showTransitions: false,
+      showValue,
+      theme: theme!
+    });
+  }
+
   public render(): React.ReactElement<{}> {
     const {
       ariaLabel,
@@ -82,14 +111,7 @@ export class SliderBase extends BaseComponent<ISliderProps, ISliderState> implem
     const onMouseDownProp: {} = disabled ? {} : { onMouseDown: this._onMouseDownOrTouchStart };
     const onTouchStartProp: {} = disabled ? {} : { onTouchStart: this._onMouseDownOrTouchStart };
     const onKeyDownProp: {} = disabled ? {} : { onKeyDown: this._onKeyDown };
-    const classNames = getClassNames(styles, {
-      className,
-      disabled,
-      vertical,
-      showTransitions: renderedValue === value,
-      showValue,
-      theme: theme!
-    });
+    const classNames = this.getClassNames();
     const divButtonProps = buttonProps ? getNativeProps<React.HTMLAttributes<HTMLDivElement>>(buttonProps, divProperties) : undefined;
 
     return (

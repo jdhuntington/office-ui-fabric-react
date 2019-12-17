@@ -1,7 +1,7 @@
 import { useTheme } from './themeContext';
 import { resolveTokens } from './resolveTokens';
 import { ITheme } from './theme.types';
-import { mergeCssSets } from '@uifabric/merge-styles';
+import { mergeCssSets, mergeCss } from '@uifabric/merge-styles';
 
 type Options = IComposeOptions[];
 type SlotsAssignment = any;
@@ -140,7 +140,7 @@ const _getClasses = (name: string | undefined, theme: ITheme, classNamesCache: W
       }
     });
 
-    classes = mergeCssSets(styles);
+    classes = mergeCssSets([styles], { rtl: theme.direction === 'rtl' });
     classNamesCache.set(theme, classes);
   }
 

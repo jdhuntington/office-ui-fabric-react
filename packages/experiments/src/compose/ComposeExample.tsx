@@ -1,8 +1,9 @@
 import { ComponentPage, ExampleCard, IComponentDemoPageProps } from '@uifabric/example-app-base';
-import { Slider } from 'office-ui-fabric-react';
+import { Slider, ChoiceGroup } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ThemeProvider, ITheme } from '@uifabric/react-theming';
 import { MySlider } from './SliderCompose';
+import { MyChoiceGroup } from './ChoiceGroupCompose';
 
 const theme: ITheme = {
   direction: 'ltr',
@@ -62,6 +63,60 @@ export class ComposeExample extends React.Component<IComponentDemoPageProps, {}>
               <ThemeProvider theme={theme}>
                 <MySlider />
               </ThemeProvider>
+            </ExampleCard>
+            <ExampleCard title="ChoiceGroup (OUFR)">
+              <ChoiceGroup
+                className="defaultChoiceGroup"
+                defaultSelectedKey="B"
+                options={[
+                  {
+                    key: 'A',
+                    text: 'Option A'
+                  },
+                  {
+                    key: 'B',
+                    text: 'Option B'
+                  },
+                  {
+                    key: 'C',
+                    text: 'Option C',
+                    disabled: true
+                  },
+                  {
+                    key: 'D',
+                    text: 'Option D'
+                  }
+                ]}
+                label="Pick one"
+                required={true}
+              />
+            </ExampleCard>
+            <ExampleCard title="ChoiceGroup (Composed)">
+              <MyChoiceGroup
+                className="defaultChoiceGroup"
+                defaultSelectedKey="B"
+                options={[
+                  {
+                    key: 'A',
+                    text: 'Option A'
+                  },
+                  {
+                    key: 'B',
+                    text: 'Option B'
+                  },
+                  {
+                    key: 'C',
+                    text: 'Option C',
+                    disabled: true
+                  },
+                  {
+                    key: 'D',
+                    text: 'Option D'
+                  }
+                ]}
+                label="Pick one"
+                required={true}
+              />
             </ExampleCard>
           </div>
         }

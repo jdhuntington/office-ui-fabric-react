@@ -1,5 +1,6 @@
 import { compose, ITheme } from '@uifabric/react-theming';
-import { SliderBase, createTheme, ITheme as LegacyTheme } from 'office-ui-fabric-react';
+import { createTheme, ITheme as LegacyTheme } from 'office-ui-fabric-react';
+import { SliderBase } from './SliderBase';
 import * as React from 'react';
 import { getStyles } from './SliderCompose.Styles';
 

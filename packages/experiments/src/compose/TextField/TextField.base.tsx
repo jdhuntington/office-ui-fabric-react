@@ -5,14 +5,10 @@ import {
   getId,
   getNativeProps,
   Icon,
-  ILabelStyleProps,
-  ILabelStyles,
   initializeComponentRef,
   inputProperties,
   IProcessedStyleSet,
   isControlled,
-  IStyleFunctionOrObject,
-  Label,
   textAreaProperties,
   warn,
   warnControlledUsage,
@@ -346,18 +342,10 @@ export class TextFieldBase extends React.Component<ITextFieldProps, ITextFieldSt
   };
 
   private _onRenderLabel = (props: ITextFieldProps): JSX.Element | null => {
-    const { label, required } = props;
-    // IProcessedStyleSet definition requires casting for what Label expects as its styles prop
-    const labelStyles = this._classNames.subComponentStyles
-      ? (this._classNames.subComponentStyles.label as IStyleFunctionOrObject<ILabelStyleProps, ILabelStyles>)
-      : undefined;
+    const { label } = props;
 
     if (label) {
-      return (
-        <Label required={required} htmlFor={this._id} styles={labelStyles} disabled={props.disabled} id={this._labelId}>
-          {props.label}
-        </Label>
-      );
+      return <div>{props.label}</div>;
     }
     return null;
   };

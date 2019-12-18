@@ -9,7 +9,7 @@ const resources = require('../../scripts/webpack/webpack-resources');
 // TODO: Should root cause why this only works as a serve config.
 module.exports = resources.createServeConfig({
   entry: './src/index.scenarios.tsx',
-  mode: 'production',
+  mode: 'development',
   output: {
     filename: 'perf-test.js'
   }

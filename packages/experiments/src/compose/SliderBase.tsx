@@ -11,8 +11,7 @@ import {
   ISliderProps,
   ISliderStyleProps,
   ISliderStyles,
-  KeyCodes,
-  Label
+  KeyCodes
 } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -74,7 +73,7 @@ export class SliderBase extends BaseComponent<ISliderProps, ISliderState> implem
   }
 
   public render(): React.ReactElement<{}> {
-    const { ariaLabel, disabled, label, max, min, showValue, buttonProps, vertical, valueFormat, originFromZero } = this.props;
+    const { ariaLabel, disabled, label, max, min, buttonProps, vertical, originFromZero } = this.props;
     const value = this.value;
     const renderedValue = this.renderedValue;
     const thumbOffsetPercent: number = min === max ? 0 : ((renderedValue! - min!) / (max! - min!)) * 100;
@@ -88,11 +87,6 @@ export class SliderBase extends BaseComponent<ISliderProps, ISliderState> implem
 
     return (
       <div className={classNames.root}>
-        {label && (
-          <Label className={classNames.titleLabel} {...(ariaLabel ? {} : { htmlFor: this._id })} disabled={disabled}>
-            {label}
-          </Label>
-        )}
         <div className={classNames.container}>
           <div
             aria-valuenow={value}
@@ -146,11 +140,6 @@ export class SliderBase extends BaseComponent<ISliderProps, ISliderState> implem
               )}
             </div>
           </div>
-          {showValue && (
-            <Label className={classNames.valueLabel} disabled={disabled}>
-              {valueFormat ? valueFormat(value!) : value}
-            </Label>
-          )}
         </div>
       </div>
     ) as React.ReactElement<{}>;

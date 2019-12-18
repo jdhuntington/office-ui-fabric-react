@@ -1,4 +1,3 @@
-import { Label } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import {
@@ -108,11 +107,6 @@ export class ChoiceGroupBase extends React.Component<IChoiceGroupProps, IChoiceG
     return (
       <div className={classNames.applicationRole} {...divProps}>
         <div className={classNames.root} role="radiogroup" {...ariaLabelledBy && { 'aria-labelledby': ariaLabelledBy }}>
-          {label && (
-            <Label className={classNames.label} required={required} id={labelId} disabled={disabled}>
-              {label}
-            </Label>
-          )}
           <div className={classNames.flexContainer}>
             {options.map((option: IChoiceGroupOption) => {
               const innerOptionProps = {

@@ -17,8 +17,6 @@ import {
   ICheckboxStyleProps,
   ICheckboxStyles,
   Icon,
-  ILabelStyleProps,
-  ILabelStyles,
   initializeComponentRef,
   IPanelStyleProps,
   IPanelStyles,
@@ -29,7 +27,6 @@ import {
   IStyleFunctionOrObject,
   KeyCodes,
   KeytipData,
-  Label,
   mergeAriaAttributeValues,
   Panel,
   ResponsiveMode,
@@ -1140,17 +1137,7 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
   };
 
   private _onRenderLabel = (props: IDropdownProps): JSX.Element | null => {
-    const { label, required, disabled } = props;
-
-    const labelStyles = this._classNames.subComponentStyles
-      ? (this._classNames.subComponentStyles.label as IStyleFunctionOrObject<ILabelStyleProps, ILabelStyles>)
-      : undefined;
-
-    return label ? (
-      <Label className={this._classNames.label} id={this._labelId} required={required} styles={labelStyles} disabled={disabled}>
-        {label}
-      </Label>
-    ) : null;
+    return null;
   };
 
   /**

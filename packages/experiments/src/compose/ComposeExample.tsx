@@ -1,11 +1,12 @@
 import { ComponentPage, ExampleCard, IComponentDemoPageProps } from '@uifabric/example-app-base';
 import { ITheme, ThemeProvider } from '@uifabric/react-theming';
-import { ChoiceGroup, DropdownMenuItemType, IDropdownOption, Slider, Dropdown } from 'office-ui-fabric-react';
+import { ChoiceGroup, DropdownMenuItemType, IDropdownOption, Slider, Dropdown, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { MyChoiceGroup } from './ChoiceGroupCompose';
 import { MySlider } from './SliderCompose';
 import { MyDropdown } from './DropdownCompose';
+import { MyTextField } from './TextFieldCompose';
 
 const options: IDropdownOption[] = [
   { key: 'fruitsHeader', text: 'Fruits', itemType: DropdownMenuItemType.Header },
@@ -141,6 +142,14 @@ export class ComposeExample extends React.Component<IComponentDemoPageProps, {}>
             <ExampleCard title="Dropdown (Composed)">
               <ThemeProvider theme={theme}>
                 <MyDropdown placeholder="Select an option" label="Basic uncontrolled example" options={options} />
+              </ThemeProvider>
+            </ExampleCard>
+            <ExampleCard title="TextField (OUFR)">
+              <TextField />
+            </ExampleCard>
+            <ExampleCard title="TextField (Composed)">
+              <ThemeProvider theme={theme}>
+                <MyTextField />
               </ThemeProvider>
             </ExampleCard>
           </div>

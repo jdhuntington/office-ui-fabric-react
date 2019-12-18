@@ -202,24 +202,19 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
 
     const props = this.props;
     const {
-      className,
       label,
       options,
       ariaLabel,
       required,
       errorMessage,
       keytipProps,
-      styles: propStyles,
-      theme,
-      panelProps,
-      calloutProps,
       multiSelect,
       onRenderTitle = this._onRenderTitle,
       onRenderContainer = this._onRenderContainer,
       onRenderCaretDown = this._onRenderCaretDown,
       onRenderLabel = this._onRenderLabel
     } = props;
-    const { isOpen, selectedIndices, calloutRenderEdge } = this.state;
+    const { isOpen, selectedIndices } = this.state;
     const onRenderPlaceholder = props.onRenderPlaceholder || props.onRenderPlaceHolder || this._onRenderPlaceholder;
 
     const selectedOptions = getAllSelectedOptions(options, selectedIndices);
@@ -456,7 +451,7 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
   };
 
   /** Render placeholder text in dropdown input */
-  private _onRenderPlaceholder = (props: IDropdownProps): JSX.Element | null => {
+  private _onRenderPlaceholder = (): JSX.Element | null => {
     if (!this._placeholder) {
       return null;
     }
@@ -499,7 +494,7 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
   };
 
   /** Render Caret Down Icon */
-  private _onRenderCaretDown = (props: IDropdownProps): JSX.Element => {
+  private _onRenderCaretDown = (): JSX.Element => {
     return <Icon className={this._classNames.caretDown} iconName="ChevronDown" aria-hidden={true} />;
   };
 
@@ -758,7 +753,7 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
     }, this._scrollIdleDelay);
   };
 
-  private _onItemMouseEnter(item: any, ev: React.MouseEvent<HTMLElement>): void {
+  private _onItemMouseEnter(ev: React.MouseEvent<HTMLElement>): void {
     if (this._shouldIgnoreMouseEvent()) {
       return;
     }
@@ -767,7 +762,7 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
     targetElement.focus();
   }
 
-  private _onItemMouseMove(item: any, ev: React.MouseEvent<HTMLElement>): void {
+  private _onItemMouseMove(ev: React.MouseEvent<HTMLElement>): void {
     const targetElement = ev.currentTarget as HTMLElement;
     this._gotMouseMove = true;
 
@@ -778,7 +773,7 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
     targetElement.focus();
   }
 
-  private _onMouseItemLeave = (item: any, ev: React.MouseEvent<HTMLElement>): void => {
+  private _onMouseItemLeave = (): void => {
     if (this._shouldIgnoreMouseEvent()) {
       return;
     }
@@ -1173,24 +1168,7 @@ export class DropdownBase extends React.Component<IDropdownInternalProps, IDropd
       return (this.props as any).classes;
     }
     const props = this.props;
-    const {
-      className,
-      label,
-      options,
-      ariaLabel,
-      required,
-      errorMessage,
-      keytipProps,
-      styles: propStyles,
-      theme,
-      panelProps,
-      calloutProps,
-      multiSelect,
-      onRenderTitle = this._onRenderTitle,
-      onRenderContainer = this._onRenderContainer,
-      onRenderCaretDown = this._onRenderCaretDown,
-      onRenderLabel = this._onRenderLabel
-    } = props;
+    const { className, label, options, required, errorMessage, styles: propStyles, theme, panelProps, calloutProps } = props;
     const { isOpen, selectedIndices, calloutRenderEdge } = this.state;
     const selectedOptions = getAllSelectedOptions(options, selectedIndices);
     const disabled = this._isDisabled();

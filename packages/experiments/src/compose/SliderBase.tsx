@@ -59,21 +59,7 @@ export class SliderBase extends BaseComponent<ISliderProps, ISliderState> implem
   }
 
   public getClassNames(): any {
-    const {
-      ariaLabel,
-      className,
-      disabled,
-      label,
-      max,
-      min,
-      showValue,
-      buttonProps,
-      vertical,
-      valueFormat,
-      styles,
-      theme,
-      originFromZero
-    } = this.props;
+    const { className, disabled, showValue, vertical, styles, theme } = this.props;
     if ((this.props as any).classes) {
       return (this.props as any).classes;
     }
@@ -88,21 +74,7 @@ export class SliderBase extends BaseComponent<ISliderProps, ISliderState> implem
   }
 
   public render(): React.ReactElement<{}> {
-    const {
-      ariaLabel,
-      className,
-      disabled,
-      label,
-      max,
-      min,
-      showValue,
-      buttonProps,
-      vertical,
-      valueFormat,
-      styles,
-      theme,
-      originFromZero
-    } = this.props;
+    const { ariaLabel, disabled, label, max, min, showValue, buttonProps, vertical, valueFormat, originFromZero } = this.props;
     const value = this.value;
     const renderedValue = this.renderedValue;
     const thumbOffsetPercent: number = min === max ? 0 : ((renderedValue! - min!) / (max! - min!)) * 100;
@@ -141,6 +113,7 @@ export class SliderBase extends BaseComponent<ISliderProps, ISliderState> implem
           >
             <div ref={this._sliderLine} className={classNames.line}>
               {originFromZero && (
+                // tslint:disable: jsx-ban-props
                 <span className={css(classNames.zeroTick)} style={this._getStyleUsingOffsetPercent(vertical, zeroOffsetPercent)} />
               )}
               <span ref={this._thumb} className={classNames.thumb} style={this._getStyleUsingOffsetPercent(vertical, thumbOffsetPercent)} />

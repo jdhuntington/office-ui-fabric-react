@@ -132,22 +132,7 @@ export class ChoiceGroupOptionBase extends React.Component<IChoiceGroupOptionPro
     if ((this.props as any).classes) {
       return (this.props as any).classes;
     }
-    const {
-      ariaLabel,
-      focused,
-      required,
-      theme,
-      iconProps,
-      imageSrc,
-      imageSize = { width: 32, height: 32 },
-      disabled,
-      checked,
-      id,
-      styles,
-      name,
-      onRenderField = this._onRenderField,
-      ...rest
-    } = this.props;
+    const { focused, theme, iconProps, imageSrc, imageSize = { width: 32, height: 32 }, disabled, checked, styles } = this.props;
     return getClassNames(styles!, {
       theme: theme!,
       hasIcon: !!iconProps,

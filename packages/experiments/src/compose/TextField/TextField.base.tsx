@@ -23,6 +23,7 @@ import * as React from 'react';
 import { ITextField, ITextFieldProps, ITextFieldStyleProps, ITextFieldStyles } from './TextField.types';
 
 const getClassNames = classNamesFunction<ITextFieldStyleProps, ITextFieldStyles>();
+// tslint:disable: jsx-ban-props
 
 /** @internal */
 export interface ITextFieldState {
@@ -173,27 +174,15 @@ export class TextFieldBase extends React.Component<ITextFieldProps, ITextFieldSt
 
   public render(): JSX.Element {
     const {
-      borderless,
-      className,
-      disabled,
       iconProps,
-      inputClassName,
-      label,
       multiline,
-      required,
-      underlined,
       prefix,
-      resizable,
       suffix,
-      theme,
-      styles,
-      autoAdjustHeight,
       onRenderPrefix = this._onRenderPrefix,
       onRenderSuffix = this._onRenderSuffix,
       onRenderLabel = this._onRenderLabel,
       onRenderDescription = this._onRenderDescription
     } = this.props;
-    const { isFocused } = this.state;
     const errorMessage = this._errorMessage;
 
     this._classNames = this._getClassNames();
@@ -561,16 +550,10 @@ export class TextFieldBase extends React.Component<ITextFieldProps, ITextFieldSt
       multiline,
       required,
       underlined,
-      prefix,
       resizable,
-      suffix,
       theme,
       styles,
-      autoAdjustHeight,
-      onRenderPrefix = this._onRenderPrefix,
-      onRenderSuffix = this._onRenderSuffix,
-      onRenderLabel = this._onRenderLabel,
-      onRenderDescription = this._onRenderDescription
+      autoAdjustHeight
     } = this.props;
     const { isFocused } = this.state;
     const errorMessage = this._errorMessage;

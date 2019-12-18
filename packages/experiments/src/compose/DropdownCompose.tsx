@@ -1,5 +1,5 @@
 import { compose, ITheme } from '@uifabric/react-theming';
-import { createTheme, ITheme as LegacyTheme } from 'office-ui-fabric-react';
+import { createTheme } from 'office-ui-fabric-react';
 import { DropdownBase } from './Dropdown/Dropdown.base';
 import * as React from 'react';
 import { getStyles } from './Dropdown/Dropdown.styles';

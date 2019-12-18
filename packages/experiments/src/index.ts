@@ -20,4 +20,9 @@ export * from './TilesList';
 export * from './Toggle';
 export * from './VirtualizedList';
 
+export { MyDropdown } from './compose/DropdownCompose';
+export { MyTextField } from './compose/TextFieldCompose';
+export { MySlider } from './compose/SliderCompose';
+export { MyChoiceGroup } from './compose/ChoiceGroupCompose';
+
 import './version';

@@ -1,11 +1,12 @@
 import { ComponentPage, ExampleCard, IComponentDemoPageProps } from '@uifabric/example-app-base';
 import { ITheme, ThemeProvider } from '@uifabric/react-theming';
-import { ChoiceGroup, DropdownMenuItemType, IDropdownOption, Slider, Dropdown, TextField } from 'office-ui-fabric-react';
+import { ChoiceGroup, Dropdown, DropdownMenuItemType, IDropdownOption, Label, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { MyChoiceGroup } from './ChoiceGroupCompose';
-import { MySlider } from './SliderCompose';
 import { MyDropdown } from './DropdownCompose';
+import { MyLabel } from './Label/Label';
+import { MySlider } from './SliderCompose';
 import { MyTextField } from './TextFieldCompose';
 
 const options: IDropdownOption[] = [
@@ -72,8 +73,23 @@ export class ComposeExample extends React.Component<IComponentDemoPageProps, {}>
         componentName="Compose"
         exampleCards={
           <div>
-            <ExampleCard title="Slider (OUFR)">
-              <Slider />
+            <ExampleCard title="Label (Composed)">
+              <ThemeProvider theme={theme}>
+                <MyLabel>Lorem ipsum dolor sit amet</MyLabel>
+                <MyLabel required>Lorem ipsum dolor sit amet</MyLabel>
+                <MyLabel required disabled>
+                  Lorem ipsum dolor sit amet
+                </MyLabel>
+                <MyLabel disabled>Lorem ipsum dolor sit amet</MyLabel>
+              </ThemeProvider>
+            </ExampleCard>
+            <ExampleCard title="Label (OUFR)">
+              <Label>Lorem ipsum dolor sit amet</Label>
+              <Label required>Lorem ipsum dolor sit amet</Label>
+              <Label required disabled>
+                Lorem ipsum dolor sit amet
+              </Label>
+              <Label disabled>Lorem ipsum dolor sit amet</Label>
             </ExampleCard>
             <ExampleCard title="Slider (Composed)">
               <ThemeProvider theme={theme}>

@@ -20,7 +20,6 @@ export class LabelBase extends React.Component<ILabelProps, {}> {
 
   private _getClassNames() {
     if ((this.props as any).classes) {
-      console.log(this.props);
       const struct = (this.props as any).classes as any;
       const { required, disabled } = this.props;
       return struct[(!!required).toString()][(!!disabled).toString()];

@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { MyChoiceGroup } from './ChoiceGroupCompose';
 import { MyDropdown } from './DropdownCompose';
-import { MyLabel } from './Label/Label';
+import { MyLabel, RealLabel } from './Label/Label';
 import { MySlider } from './SliderCompose';
 import { MyTextField } from './TextFieldCompose';
 
@@ -75,21 +75,28 @@ export class ComposeExample extends React.Component<IComponentDemoPageProps, {}>
           <div>
             <ExampleCard title="Label (Composed)">
               <ThemeProvider theme={theme}>
+                <h3>MyLabel</h3>
                 <MyLabel>Lorem ipsum dolor sit amet</MyLabel>
                 <MyLabel required>Lorem ipsum dolor sit amet</MyLabel>
                 <MyLabel required disabled>
                   Lorem ipsum dolor sit amet
                 </MyLabel>
                 <MyLabel disabled>Lorem ipsum dolor sit amet</MyLabel>
+                <h3>RealLabel</h3>
+                <RealLabel>Lorem ipsum dolor sit amet</RealLabel>
+                <RealLabel required>Lorem ipsum dolor sit amet</RealLabel>
+                <RealLabel required disabled>
+                  Lorem ipsum dolor sit amet
+                </RealLabel>
+                <RealLabel disabled>Lorem ipsum dolor sit amet</RealLabel>
+                <h3>Label</h3>
+                <Label>Lorem ipsum dolor sit amet</Label>
+                <Label required>Lorem ipsum dolor sit amet</Label>
+                <Label required disabled>
+                  Lorem ipsum dolor sit amet
+                </Label>
+                <Label disabled>Lorem ipsum dolor sit amet</Label>
               </ThemeProvider>
-            </ExampleCard>
-            <ExampleCard title="Label (OUFR)">
-              <Label>Lorem ipsum dolor sit amet</Label>
-              <Label required>Lorem ipsum dolor sit amet</Label>
-              <Label required disabled>
-                Lorem ipsum dolor sit amet
-              </Label>
-              <Label disabled>Lorem ipsum dolor sit amet</Label>
             </ExampleCard>
             <ExampleCard title="Slider (Composed)">
               <ThemeProvider theme={theme}>

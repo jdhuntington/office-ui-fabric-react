@@ -1,18 +1,19 @@
+import { mergeCssSets } from '@uifabric/merge-styles';
 import { compose, ITheme } from '@uifabric/react-theming';
-import { createTheme } from 'office-ui-fabric-react';
+import { createTheme, styled } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { LabelBase } from './Label.base';
 import { getStyles } from './Label.styles';
-import { mergeCssSets } from '@uifabric/merge-styles';
+import { ILabelProps, ILabelStyleProps, ILabelStyles } from './Label.types';
 
 const legacyTokenMapper = {
-  theme: (_: any, theme: ITheme) =>
-    createTheme({
-      semanticColors: {
-        inputBackground: theme.colors.bodyText
-      }
-    })
+  theme: (_: any, theme: any) => {
+    if (!theme.legacyTheme) {
+      console.warn("No legacy theme. What's the deal?");
+    }
+    return theme.legacyTheme || createTheme({});
+  }
 };
 
 const legacyStyleMapper = (styleFn: any) => {
@@ -38,4 +39,13 @@ export const MyLabel = compose(
     styles: legacyStyleMapper(getStyles),
     skipGetClasses: true
   } as any
+);
+
+export const RealLabel: React.StatelessComponent<ILabelProps> = styled<ILabelProps, ILabelStyleProps, ILabelStyles>(
+  LabelBase,
+  getStyles,
+  undefined,
+  {
+    scope: 'Label'
+  }
 );

@@ -11,6 +11,7 @@ export const getStyles = (props: ILabelStyleProps): ILabelStyles => {
   const labelColor = semanticColors.bodyText;
   const labelDisabledColor = semanticColors.disabledBodyText;
   const labelRequiredStarColor = semanticColors.errorText;
+  console.log('Label.styles.ts: getStyles -> semanticColors.bodyText', labelColor);
 
   return {
     root: [

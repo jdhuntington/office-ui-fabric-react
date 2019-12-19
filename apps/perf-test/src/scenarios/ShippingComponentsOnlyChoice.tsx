@@ -1,11 +1,5 @@
-import { ITheme, ThemeProvider } from '@uifabric/react-theming';
 import { ChoiceGroup, DropdownMenuItemType, IDropdownOption, Slider, Dropdown, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
-
-import { MyChoiceGroup } from '@uifabric/experiments';
-import { MySlider } from '@uifabric/experiments';
-import { MyDropdown } from '@uifabric/experiments';
-import { MyTextField } from '@uifabric/experiments';
 
 const options: IDropdownOption[] = [
   { key: 'fruitsHeader', text: 'Fruits', itemType: DropdownMenuItemType.Header },
@@ -22,9 +16,7 @@ const options: IDropdownOption[] = [
 
 const scenario = (
   <div>
-    <MySlider />
-    <MySlider />
-    <MyChoiceGroup
+    <ChoiceGroup
       className="defaultChoiceGroup"
       defaultSelectedKey="B"
       options={[
@@ -49,8 +41,6 @@ const scenario = (
       label="Pick one"
       required={true}
     />
-    <MyDropdown placeholder="Select an option" label="Basic uncontrolled example" options={options} />
-    <MyTextField />
   </div>
 );
 

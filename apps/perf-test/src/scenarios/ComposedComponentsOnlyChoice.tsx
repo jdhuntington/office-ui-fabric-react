@@ -22,8 +22,6 @@ const options: IDropdownOption[] = [
 
 const scenario = (
   <div>
-    <MySlider />
-    <MySlider />
     <MyChoiceGroup
       className="defaultChoiceGroup"
       defaultSelectedKey="B"
@@ -49,8 +47,6 @@ const scenario = (
       label="Pick one"
       required={true}
     />
-    <MyDropdown placeholder="Select an option" label="Basic uncontrolled example" options={options} />
-    <MyTextField />
   </div>
 );
 

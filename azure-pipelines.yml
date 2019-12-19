@@ -17,8 +17,8 @@ steps:
     displayName: 'Install Node.js'
 
   - script: |
-      yarn
-    displayName: yarn
+      ci-build
+    displayName: ci-build
 
   - script: |
       npm run checkchange

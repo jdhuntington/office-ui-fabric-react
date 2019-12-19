@@ -129,10 +129,13 @@ const _getClasses = (name: string | undefined, theme: ITheme, classNamesCache: W
   if (!classes) {
     const tokens = resolveTokens(name, theme, optionsSet.map((o: any) => o.tokens || {}));
     let styles: any = {};
-
+    let specialStyleEval = false;
     optionsSet.forEach((options: any) => {
       if (options && options.styles) {
-        if (typeof options.styles === 'function') {
+        if (typeof options.styles === 'function' && options.skipGetClasses) {
+          classes = options.styles(tokens);
+          specialStyleEval = true;
+        } else if (typeof options.styles === 'function') {
           styles = { ...styles, ...options.styles(tokens) };
         } else {
           styles = { ...styles, ...options.styles };
@@ -140,7 +143,10 @@ const _getClasses = (name: string | undefined, theme: ITheme, classNamesCache: W
       }
     });
 
-    classes = mergeCssSets([styles], { rtl: theme.direction === 'rtl' });
+    if (!specialStyleEval) {
+      classes = mergeCssSets([styles], { rtl: theme.direction === 'rtl' });
+    }
+
     classNamesCache.set(theme, classes);
   }
 

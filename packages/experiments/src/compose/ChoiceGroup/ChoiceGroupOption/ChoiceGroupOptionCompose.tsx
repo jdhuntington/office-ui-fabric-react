@@ -3,6 +3,7 @@ import { createTheme } from 'office-ui-fabric-react';
 import { ChoiceGroupOptionBase } from './ChoiceGroupOption.base';
 import * as React from 'react';
 import { getStyles } from './ChoiceGroupOption.styles';
+import { mergeCssSets } from '@uifabric/merge-styles';
 
 const legacyTokenMapper = {
   theme: (_: any, theme: ITheme) =>
@@ -14,7 +15,21 @@ const legacyTokenMapper = {
 };
 
 const legacyStyleMapper = (styleFn: any) => {
-  return ({ theme }: any) => styleFn({ theme });
+  return ({ theme }: any) => {
+    const result: any = {};
+    [true, false].forEach(checked => {
+      const checkedMap: any = {};
+      result[checked.toString()] = checkedMap;
+      [true, false].forEach(disabled => {
+        const disabledMap: any = {};
+        checkedMap[disabled.toString()] = disabledMap;
+        [true, false].forEach(focused => {
+          disabledMap[focused.toString()] = mergeCssSets([styleFn({ theme, checked, disabled, focused })]);
+        });
+      });
+    });
+    return result;
+  };
 };
 
 export const MyChoiceGroupOption = compose(
@@ -23,6 +38,7 @@ export const MyChoiceGroupOption = compose(
   },
   {
     tokens: legacyTokenMapper,
-    styles: legacyStyleMapper(getStyles)
-  }
+    styles: legacyStyleMapper(getStyles),
+    skipGetClasses: true
+  } as any
 );

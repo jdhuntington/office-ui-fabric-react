@@ -11,7 +11,8 @@ import { RtlContextWithTheme } from './rtl-context-with-theme';
 
 export const App: React.FunctionComponent<{}> = props => {
   const [isRtl, setIsRtl] = React.useState(getRTL());
-  const [showBaseTests, setShowBaseTests] = React.useState(true);
+  const [showBaseTests, setShowBaseTests] = React.useState(false);
+  const [showHtmlTests, setShowHtmlTests] = React.useState(false);
   const [showContextTests, setShowContextTests] = React.useState(false);
   const [showThemeTests, setShowThemeTests] = React.useState(false);
   const toggleRtl = React.useCallback(() => {
@@ -20,6 +21,12 @@ export const App: React.FunctionComponent<{}> = props => {
   }, [isRtl, setIsRtl]);
   return (
     <>
+      <h2>Minimal repro</h2>
+      <RtlContextWithFabric>
+        <LtrContextWithFabric>
+          <FabricEtc />
+        </LtrContextWithFabric>
+      </RtlContextWithFabric>
       <div dir="ltr">
         <h1>RTL test</h1>
         <h4>
@@ -32,6 +39,12 @@ export const App: React.FunctionComponent<{}> = props => {
           <label>
             <input type="checkbox" checked={showBaseTests} onChange={() => setShowBaseTests(!showBaseTests)} />
             &nbsp;Show base tests
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" checked={showHtmlTests} onChange={() => setShowHtmlTests(!showHtmlTests)} />
+            &nbsp;Show html tests
           </label>
         </div>
         <div>
@@ -49,6 +62,36 @@ export const App: React.FunctionComponent<{}> = props => {
       </div>
 
       {showBaseTests && <FabricEtc />}
+      {showHtmlTests && (
+        <>
+          <div dir="ltr">
+            <h4>LTR</h4>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </div>
+
+          <div dir="rtl">
+            <h4>RTL</h4>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </div>
+
+          <div dir="rtl">
+            <h4>RTL</h4>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <div dir="rtl">
+              <h4>RTL</h4>
+              <p>Lorem ipsum dolor sit amet.</p>
+              <div dir="rtl">
+                <h4>RTL</h4>
+                <p>Lorem ipsum dolor sit amet.</p>
+                <div dir="ltr">
+                  <h4>LTR</h4>
+                  <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
       {showContextTests && (
         <>
           <RtlContextWithFabric>

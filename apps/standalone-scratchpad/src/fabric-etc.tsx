@@ -1,5 +1,5 @@
+import { Breadcrumb, ChoiceGroup, DefaultButton, IBreadcrumbItem, TextField, Checkbox } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { DefaultButton, TextField, Breadcrumb, IBreadcrumbItem, ChoiceGroup } from 'office-ui-fabric-react';
 
 const items: IBreadcrumbItem[] = [
   { text: 'Folder 1', key: 'f1' },
@@ -36,6 +36,9 @@ export const FabricEtc: React.FunctionComponent<{}> = props => {
           ]}
           label="Pick one"
         />
+      </div>
+      <div>
+        <Checkbox label="Checkbox " />
       </div>
     </div>
   );

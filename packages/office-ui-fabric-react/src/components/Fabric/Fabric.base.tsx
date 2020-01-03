@@ -35,17 +35,23 @@ export class FabricBase extends React.Component<
 
   public render() {
     const { as: Root = 'div', theme, dir } = this.props;
-    const classNames = this._getClassNames();
-    const divProps = getNativeProps<React.HTMLAttributes<HTMLDivElement>>(this.props, divProperties);
     const isRTL = dir === 'rtl';
-    let renderedContent = <Root {...divProps} className={classNames.root} ref={this._rootElement} />;
 
-    // Expose an rtl based theme if dir is specified and it doesn't agree with the theme setting.
+    // Adjust dir if prop is specified and it doesn't agree with the theme setting.
     if (dir !== undefined && theme && (theme.rtl === undefined || theme.rtl !== isRTL)) {
-      renderedContent = <Customizer settings={{ theme: getRTLTheme(theme, isRTL) }}>{renderedContent}</Customizer>;
+      const newTheme = getRTLTheme(theme, isRTL);
+      const classNames = this._getClassNames(newTheme);
+      const divProps = getNativeProps<React.HTMLAttributes<HTMLDivElement>>(this.props, divProperties);
+      return (
+        <Customizer settings={{ theme: newTheme }}>
+          <Root {...divProps} className={classNames.root} ref={this._rootElement} />
+        </Customizer>
+      );
+    } else {
+      const classNames = this._getClassNames(this.props.theme!);
+      const divProps = getNativeProps<React.HTMLAttributes<HTMLDivElement>>(this.props, divProperties);
+      return <Root {...divProps} className={classNames.root} ref={this._rootElement} />;
     }
-
-    return renderedContent;
   }
 
   public componentDidMount(): void {
@@ -63,8 +69,8 @@ export class FabricBase extends React.Component<
     }
   }
 
-  private _getClassNames(): IProcessedStyleSet<IFabricStyles> {
-    const { className, theme, applyTheme } = this.props;
+  private _getClassNames(theme: ITheme): IProcessedStyleSet<IFabricStyles> {
+    const { className, applyTheme } = this.props;
     const classNames = getClassNames(getStyles, {
       theme: theme!,
       applyTheme: applyTheme,
@@ -76,7 +82,7 @@ export class FabricBase extends React.Component<
 
   private _addClassNameToBody(): void {
     if (this.props.applyThemeToBody) {
-      const classNames = this._getClassNames();
+      const classNames = this._getClassNames(this.props.theme!);
       const currentDoc = getDocument(this._rootElement.current);
       if (currentDoc) {
         currentDoc.body.classList.add(classNames.bodyThemed);

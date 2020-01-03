@@ -11,22 +11,21 @@ import { RtlContextWithTheme } from './rtl-context-with-theme';
 
 export const App: React.FunctionComponent<{}> = props => {
   const [isRtl, setIsRtl] = React.useState(getRTL());
-  const [showBaseTests, setShowBaseTests] = React.useState(false);
-  const [showHtmlTests, setShowHtmlTests] = React.useState(false);
-  const [showContextTests, setShowContextTests] = React.useState(false);
-  const [showThemeTests, setShowThemeTests] = React.useState(false);
   const toggleRtl = React.useCallback(() => {
     setRTL(!isRtl);
     setIsRtl(!isRtl);
   }, [isRtl, setIsRtl]);
+  React.useEffect(() => {
+    const timeout = setTimeout(toggleRtl, 1234);
+    return () => clearTimeout(timeout);
+  }, [isRtl, setIsRtl, toggleRtl]);
+  const [showBaseTests, setShowBaseTests] = React.useState(false);
+  const [showHtmlTests, setShowHtmlTests] = React.useState(false);
+  const [showContextTests, setShowContextTests] = React.useState(false);
+  const [showThemeTests, setShowThemeTests] = React.useState(true);
+
   return (
     <>
-      <h2>Minimal repro</h2>
-      <RtlContextWithFabric>
-        <LtrContextWithFabric>
-          <FabricEtc />
-        </LtrContextWithFabric>
-      </RtlContextWithFabric>
       <div dir="ltr">
         <h1>RTL test</h1>
         <h4>
@@ -124,17 +123,6 @@ export const App: React.FunctionComponent<{}> = props => {
           <LtrContextWithTheme>
             <FabricEtc />
           </LtrContextWithTheme>
-
-          <RtlContextWithTheme>
-            <FabricEtc />
-
-            <LtrContextWithTheme>
-              <FabricEtc />
-              <RtlContextWithTheme>
-                <FabricEtc />
-              </RtlContextWithTheme>
-            </LtrContextWithTheme>
-          </RtlContextWithTheme>
         </>
       )}
     </>

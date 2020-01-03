@@ -203,6 +203,7 @@ export function getStyles(props: ITextFieldStyleProps): ITextFieldStyles {
           selectors: {
             ':hover': {
               borderColor: semanticColors.inputBorderHovered,
+              paddingLeft: 10,
               selectors: {
                 [HighContrastSelector]: {
                   borderColor: 'Highlight'

@@ -25,7 +25,7 @@ export function mergeCss(
 ): string {
   const styleArgs = args instanceof Array ? args : [args];
   const { classes, objects } = extractStyleParts(styleArgs);
-
+  console.log(options);
   if (objects.length) {
     classes.push(styleToClassName(options || {}, objects));
   }

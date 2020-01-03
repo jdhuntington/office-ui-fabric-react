@@ -10,6 +10,26 @@ export const FabricEtc: React.FunctionComponent<{}> = props => {
   return (
     // tslint:disable-next-line:jsx-ban-props
     <div style={{ width: 400 }}>
+      <div>
+        <ChoiceGroup
+          className="defaultChoiceGroup"
+          defaultSelectedKey="A"
+          options={[
+            {
+              key: 'A',
+              text: 'Option A'
+            }
+          ]}
+        />
+      </div>
+    </div>
+  );
+};
+
+/*
+return (
+    // tslint:disable-next-line:jsx-ban-props
+    <div style={{ width: 400 }}>
       <h5>Some Fabric stuff...</h5>
       <div>
         <DefaultButton text="I am a default button" />
@@ -41,5 +61,4 @@ export const FabricEtc: React.FunctionComponent<{}> = props => {
         <Checkbox label="Checkbox " />
       </div>
     </div>
-  );
-};
+  );*/

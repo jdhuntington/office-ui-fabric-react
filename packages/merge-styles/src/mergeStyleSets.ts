@@ -194,6 +194,8 @@ export function mergeCssSets(
   styleSets: Array<IStyleSet<any> | undefined | false | null>,
   options?: IStyleOptions
 ): IProcessedStyleSet<any> {
+  console.log(options);
+
   // tslint:disable-next-line:no-any
   const classNameSet: IProcessedStyleSet<any> = { subComponentStyles: {} };
 

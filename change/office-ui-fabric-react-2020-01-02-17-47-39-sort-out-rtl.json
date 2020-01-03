@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Fabric: Render wrapper container correctly if dir prop changes.",
+  "packageName": "office-ui-fabric-react",
+  "email": "jdh@microsoft.com",
+  "commit": "17acf1837eac1884fcd64dcabd235d1c5298a161",
+  "date": "2020-01-03T01:47:39.170Z"
+}

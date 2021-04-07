@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "@fluentui/eslint-plugin": "^1.1.0",
+    "@fluentui/react-button": "*",
+    "@fluentui/react-link": "*",
+    "@fluentui/react-provider": "*",
+    "@fluentui/react-theme": "*",
+    "@fluentui/scripts": "^1.0.0",
+    "fs-extra": "^8.1.0",
+    "parallel-webpack": "^2.6.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack-bundle-analyzer": "^4.4.0"
+  },
+  "description": "Testing Fluent UI vNext React bundle sizes.",
+  "license": "MIT",
+  "name": "converged-bundles",
+  "private": true,
+  "scripts": {
+    "bundle:check": "node ./scripts/compare",
+    "bundle:run": "just-scripts bundle",
+    "clean": "just-scripts clean",
+    "code-style": "just-scripts code-style",
+    "just": "just-scripts"
+  },
+  "version": "1.0.0"
+}

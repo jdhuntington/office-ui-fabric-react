@@ -1,0 +1,10 @@
+{
+  "button": {
+    "max": 48000,
+    "target": 42000
+  },
+  "multiControl": {
+    "max": 55535,
+    "target": 54535
+  }
+}
